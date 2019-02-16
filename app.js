@@ -1,12 +1,13 @@
-document.getElementById("start").onkeyup = myFunction;
+document.getElementById("start").onkeyup = StartTimer;
   
-function myFunction () {
+function StartTimer () {
+    document.getElementById("start").id = "stop";
     var counter = 0;
     var minutes = 0;
     var seconds = 0;
     var centisecs = 0;
     var output = "";
-    setInterval(StartTimer, 10);
+    var stop = setInterval(StartTimer, 10);
     
     function StartTimer () {
         output = "";
@@ -25,5 +26,11 @@ function myFunction () {
         seconds < 10 ? output += "0" + seconds + ":" : output += seconds + ":";
         centisecs < 10 ? output += "0" + centisecs : output += centisecs;
         document.getElementById("timer").innerHTML = output;
+    }
+    
+    document.getElementById("stop").onkeydown = StopTimer;
+    
+    function StopTimer () {
+        clearInterval(stop);
     }
 }
