@@ -1,5 +1,5 @@
-//document.getElementById("start").onkeyup = StartTimer;
-document.getElementById("start").touchend = StartTimer;
+document.getElementById("start").onkeyup = StartTimer;
+//document.getElementById("start").touchend = StartTimer;
   
 function StartTimer () {
     document.getElementById("start").id = "stop";
@@ -31,8 +31,8 @@ function StartTimer () {
         document.getElementById("timer").innerHTML = output;
     }
     
-    document.getElementById("stop").touchstart = StopTimer;
-//    document.getElementById("stop").onkeydown = StopTimer;
+//    document.getElementById("stop").touchstart = StopTimer;
+    document.getElementById("stop").onkeydown = StopTimer;
     
     function StopTimer () {
         clearInterval(stop);
