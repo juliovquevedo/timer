@@ -13,6 +13,7 @@ function StartTimer () {
         output = "";
         counter++;
         centisecs = counter % 100;
+        
         if (counter % 100 == 0) {
             seconds++;
             if (seconds > 59) {
@@ -22,6 +23,7 @@ function StartTimer () {
         if (counter % 6000 == 0) {
             minutes++;
         }
+        
         output += minutes + ":";
         seconds < 10 ? output += "0" + seconds + ":" : output += seconds + ":";
         centisecs < 10 ? output += "0" + centisecs : output += centisecs;
