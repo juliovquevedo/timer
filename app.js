@@ -1,29 +1,29 @@
-document.getElementById("start").onclick = myFunction;
+document.getElementById("start").onkeyup = myFunction;
   
-
-
 function myFunction () {
-
-//    var minutes = 0;
-//    var seconds = 0;
+    var counter = 0;
+    var minutes = 0;
+    var seconds = 0;
     var centisecs = 0;
-//    var tracker = 1;
-    
+    var output = "";
     setInterval(StartTimer, 10);
     
     function StartTimer () {
-
-//        if (tracker % 100 == 0) {
-//            seconds++;
-//        }
-//        if (tracker % 6000 == 0) {
-//            minutes++;
-//    }
-        centisecs++;
-//        tracker++;
-        
-        
-        document.getElementById("timer").innerHTML = centisecs;
-//        document.getElementById("timer").innerHTML = minutes + ":" + seconds + ":" + centisecs;
+        output = "";
+        counter++;
+        centisecs = counter % 100;
+        if (counter % 100 == 0) {
+            seconds++;
+            if (seconds > 59) {
+                seconds = 0;
+            }
+        }
+        if (counter % 6000 == 0) {
+            minutes++;
+        }
+        output += minutes + ":";
+        seconds < 10 ? output += "0" + seconds + ":" : output += seconds + ":";
+        centisecs < 10 ? output += "0" + centisecs : output += centisecs;
+        document.getElementById("timer").innerHTML = output;
     }
 }
