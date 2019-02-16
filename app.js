@@ -1,4 +1,4 @@
-document.getElementById("start").touchend = StartTimer;
+document.getElementById("start").onkeyup = StartTimer;
   
 function StartTimer () {
     document.getElementById("start").id = "stop";
