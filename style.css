@@ -1,7 +1,8 @@
-.results, .stats {
+.results, .stats, .average {
     float: left;
     width: 30%;
-    font-size: 1.3rem;
+    padding: 1rem;
+    font-size: 1.4rem;
     text-align: left;
     min-height: 2rem;
 }
