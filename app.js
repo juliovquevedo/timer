@@ -47,7 +47,9 @@ function StartTimer () {
             var div = document.createElement("div");
             var t = document.createTextNode(output);
             div.appendChild(t);
-            document.getElementById("results").appendChild(div);
+            var parent = document.getElementById("results");
+            parent.insertBefore(div, parent.firstChild);
+//            document.getElementById("results").appendChild(div);
             
             if (counter < best) {
                 best = counter;
