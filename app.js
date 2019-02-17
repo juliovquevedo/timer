@@ -1,16 +1,20 @@
-document.getElementById("start").onkeyup = StartTimer;
-//document.getElementById("start").touchend = StartTimer;
+document.body.onkeyup = StartTimer;
+var i = 1;
   
 function StartTimer () {
-    document.getElementById("start").id = "stop";
+    
+//    document.getElementById("start").id = "stop";
+    
     var counter = 0;
     var minutes = 0;
     var seconds = 0;
     var centisecs = 0;
     var output = "";
-    var stop = setInterval(StartTimer, 10);
+//    var stop = setInterval(Timer, 10);
     
-    function StartTimer () {
+    if (i % 2 == 1) {
+    var stop = setInterval(Timer, 10);
+    function Timer () {
         output = "";
         counter++;
         centisecs = counter % 100;
@@ -31,10 +35,17 @@ function StartTimer () {
         document.getElementById("timer").innerHTML = output;
     }
     
-//    document.getElementById("stop").touchstart = StopTimer;
-    document.getElementById("stop").onkeydown = StopTimer;
+//    document.getElementById("stop").onkeypress = StopTimer;
+    }
+    document.body.onkeypress = StopTimer;
+        
     
     function StopTimer () {
+        if (i % 2 == 0) {
         clearInterval(stop);
+        }
+//        i++;
     }
+    
+    i++;
 }
