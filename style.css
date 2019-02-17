@@ -14,21 +14,23 @@ body {
     float: left;
     width: 33.3%;
     padding: 1rem;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     text-align: left;
     min-height: 50vh;
+    max-height: 50vh;
+    overflow: scroll;
 }
 
 .results {
-    background-color: lightskyblue;
+    background-color: #AA6C39;
 }
 
 .stats {
-    background-color: lightgreen;
+    background-color: #D49A6A;
 }
 
 .top10 {
-    background-color: lightcoral;
+    background-color: #AA6C39;
 }
 
 p {
@@ -37,6 +39,6 @@ p {
     margin: 0;
     height: 50vh;
     padding: 15vh 0;
-    background-color: black;
+    background-color: #804515;
     color: white;
 }
