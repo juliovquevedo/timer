@@ -10,26 +10,29 @@ body {
     margin: 0;
 }
 
-.results, .stats, .top10 {
+.results, .stats, .top10, [class|="title"] {
     float: left;
-    width: 33.3%;
+    width: 33.33%;
     padding: 1rem;
     font-size: 1.6rem;
     text-align: left;
+}
+
+.results, .stats, .top10 {
     min-height: 50vh;
     max-height: 50vh;
     overflow: scroll;
 }
 
-.results {
+.results, .title-left {
     background-color: #AA6C39;
 }
 
-.stats {
+.stats, .title-center {
     background-color: #D49A6A;
 }
 
-.top10 {
+.top10, .title-right {
     background-color: #AA6C39;
 }
 
