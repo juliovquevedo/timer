@@ -1,4 +1,7 @@
 document.body.onkeyup = StartTimer;
+var results = [];
+var best = Infinity;
+var worst = 0;
 var i = 1;
   
 function StartTimer () {
@@ -39,11 +42,21 @@ function StartTimer () {
     function StopTimer () {
         if (i % 2 == 0) {
             clearInterval(stop);
-            console.log(counter);
+            
+            
             var div = document.createElement("div");
             var t = document.createTextNode(output);
             div.appendChild(t);
             document.getElementById("results").appendChild(div);
+            
+            if (counter < best) {
+                best = counter;
+                document.getElementById("best").innerHTML = "Best: " + output;
+            }
+            if (counter > worst) {
+                worst = counter;
+                document.getElementById("worst").innerHTML = "Worst: " + output;
+            }
         }
     }
     
