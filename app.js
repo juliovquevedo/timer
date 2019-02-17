@@ -45,11 +45,16 @@ function StartTimer () {
         if (i % 2 == 0) {
             clearInterval(stop);
             
+            
+            
             var div = document.createElement("div");
             var t = document.createTextNode(output);
             div.appendChild(t);
             var parent = document.getElementById("results");
             parent.insertBefore(div, parent.firstChild);
+            
+            
+            
             
             if (counter < best) {
                 best = counter;
@@ -62,7 +67,6 @@ function StartTimer () {
             
             total += counter;
             average = total / (i / 2);
-//            console.log(average);
             var avgOutput = "";
             var avgMin = parseInt(average / 6000);
             average -= (avgMin * 6000);
@@ -75,7 +79,32 @@ function StartTimer () {
             average < 10 ? avgOutput += "0" + average : avgOutput += average;
             
             document.getElementById("average").innerHTML = "Average: " + avgOutput;
-//            console.log(average);
+            
+            
+            
+            
+            
+            results.push({id: counter, time: output});
+            
+            function sortByKey(results, id) {
+                return results.sort(function(a, b) {
+                    var x = a[id]; var y = b[id];
+                    return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+                });
+            }
+            
+            results = sortByKey(results, 'id');
+            results.length > 10 ? resultsSize = 10 : resultsSize = results.length;
+            var pa = document.getElementById("top10");
+            pa.innerHTML = "";
+            
+            for (j = 0; j < resultsSize; j++) {
+                var d = document.createElement("div");
+                var t = document.createTextNode(results[j].time);
+                d.appendChild(t);
+                pa.appendChild(d);
+            }
+            
         }
     }
     
