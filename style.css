@@ -18,6 +18,11 @@ body {
     text-align: left;
 }
 
+[class|="title"] {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
 .results, .stats, .top10 {
     min-height: 50vh;
     max-height: 50vh;
