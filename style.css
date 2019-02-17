@@ -1,16 +1,42 @@
-.results, .stats, .average {
+:root {
+    box-sizing: border-box;
+}
+
+*, ::before, ::after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+}
+
+.results, .stats, .top10 {
     float: left;
-    width: 30%;
+    width: 33.3%;
     padding: 1rem;
     font-size: 1.4rem;
     text-align: left;
-    min-height: 2rem;
+    min-height: 50vh;
+}
+
+.results {
+    background-color: lightskyblue;
+}
+
+.stats {
+    background-color: lightgreen;
+}
+
+.top10 {
+    background-color: lightcoral;
 }
 
 p {
-    width: 95%;
-    margin: 0 auto;
     text-align: center;
-    font-size: 8rem;
-    margin-top: 3rem;
+    font-size: 20vh;
+    margin: 0;
+    height: 50vh;
+    padding: 15vh 0;
+    background-color: black;
+    color: white;
 }
