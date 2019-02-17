@@ -1,6 +1,11 @@
-.stop {
+.results {
     width: 100vw;
     height: 100vh;
+}
+
+#results {
+    font-size: 1rem;
+    text-align: left;
 }
 
 p {
