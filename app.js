@@ -73,7 +73,14 @@ function StartTimer () {
             average -= (avgMin * 6000);
             var avgSec = parseInt(average / 100);
             average -= (avgSec * 100);
-            average = average.toFixed(0);
+            console.log(average);
+            if (average.toFixed(0) == 100) {
+                average = 0;
+                avgSec++;
+            }
+            else {
+                average = average.toFixed(0);
+            }
             
             avgOutput += avgMin + ":";
             avgSec < 10 ? avgOutput += "0" + avgSec + ":" : avgOutput += avgSec + ":";
@@ -105,6 +112,17 @@ function StartTimer () {
                 d.appendChild(t);
                 pa.appendChild(d);
             }
+            
+            
+//            var median;
+//            var size = results.length;
+//            if (size % 2 == 1) {
+//                median = results[parseInt(size / 2)].time;
+//            }
+//            else {
+////                median = (results[size / 2] + results[size / 2 + 1]);
+//            }
+//            document.getElementById("median").innerHTML = "Median: " + median;
             
         }
     }
