@@ -20,22 +20,6 @@ function StartTimer () {
         function Timer () {
             output = "";
             counter++;
-//            centisecs = counter % 100;
-//
-//            if (counter % 100 == 0) {
-//                seconds++;
-//                if (seconds > 59) {
-//                    seconds = 0;
-//                }
-//            }
-//            if (counter % 6000 == 0) {
-//                minutes++;
-//            }
-//
-//            output += minutes + ":";
-//            seconds < 10 ? output += "0" + seconds + ":" : output += seconds + ":";
-//            centisecs < 10 ? output += "0" + centisecs : output += centisecs;
-//            document.getElementById("timer").innerHTML = output;
             output = counterToOutput(counter);
             document.getElementById("timer").innerHTML = output;
         }
@@ -72,24 +56,7 @@ function StartTimer () {
             average = total / (i / 2);
             
             var avgOutput = "";
-            avgOutput = counterToOutput(average);
-//            var avgMin = parseInt(average / 6000);
-//            average -= (avgMin * 6000);
-//            var avgSec = parseInt(average / 100);
-//            average -= (avgSec * 100);
-//            console.log(average);
-//            if (average.toFixed(0) == 100) {
-//                average = 0;
-//                avgSec++;
-//            }
-//            else {
-//                average = average.toFixed(0);
-//            }
-//            
-//            avgOutput += avgMin + ":";
-//            avgSec < 10 ? avgOutput += "0" + avgSec + ":" : avgOutput += avgSec + ":";
-//            average < 10 ? avgOutput += "0" + average : avgOutput += average;
-//            
+            avgOutput = counterToOutput(average);  
             document.getElementById("average").innerHTML = "Average: " + avgOutput;
             
             
@@ -118,6 +85,9 @@ function StartTimer () {
             }
             
             
+            
+            
+            
             var median;
             var size = results.length;
             if (size % 2 == 1) {
@@ -129,6 +99,12 @@ function StartTimer () {
             }
             document.getElementById("median").innerHTML = "Median: " + median;
             
+            
+            
+            
+            
+            var standev = getStandardDeviation(results, average);
+            document.getElementById("standev").innerHTML = "Standard Deviation: " + (standev / 100).toFixed(2);
         }
     }
     
@@ -150,4 +126,21 @@ function counterToOutput (number) {
     centi < 10 ? output += "0" + centi : output += centi;
     
     return output;
+}
+
+function getStandardDeviation (data, mean) {
+    var sumOfSquaredDiff = 0;
+    var data = data;
+    var dataSize = data.length;
+    
+    for (k = 0; k < dataSize; k++) {
+        sumOfSquaredDiff += Math.pow(data[k].id - mean, 2);
+    }
+    
+    if (dataSize == 1) {
+        return 0;
+    }
+    else {
+        return Math.sqrt(sumOfSquaredDiff / (dataSize - 1));
+    }
 }
