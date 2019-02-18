@@ -118,15 +118,16 @@ function StartTimer () {
             }
             
             
-//            var median;
-//            var size = results.length;
-//            if (size % 2 == 1) {
-//                median = results[parseInt(size / 2)].time;
-//            }
-//            else {
-////                median = (results[size / 2] + results[size / 2 + 1]);
-//            }
-//            document.getElementById("median").innerHTML = "Median: " + median;
+            var median;
+            var size = results.length;
+            if (size % 2 == 1) {
+                median = results[parseInt(size / 2)].time;
+            }
+            else {
+                median = (results[size / 2].id + results[size / 2 - 1].id) / 2;
+                median = counterToOutput(median);
+            }
+            document.getElementById("median").innerHTML = "Median: " + median;
             
         }
     }
