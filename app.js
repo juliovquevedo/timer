@@ -46,6 +46,7 @@ function StartTimer () {
             clearInterval(stop);
             
             
+            document.getElementById("titleResults").innerHTML = "Results (" + (i / 2) + ")";
             
             var div = document.createElement("div");
             var t = document.createTextNode(output);

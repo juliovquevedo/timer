@@ -50,3 +50,7 @@ p {
     background-color: #804515;
     color: white;
 }
+
+.blank {
+    height: 1rem;
+}
