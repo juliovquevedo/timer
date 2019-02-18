@@ -5,6 +5,9 @@ var worst = 0;
 var total = 0;
 var average = 0;
 var i = 1;
+var ys = [];
+ys.length = 180;
+ys.fill(0, 0, 179);
   
 function StartTimer () {
     
@@ -65,7 +68,7 @@ function StartTimer () {
             
             results.push({id: counter, time: output});
             
-            function sortByKey(results, id) {
+            function sortByKey (results, id) {
                 return results.sort(function(a, b) {
                     var x = a[id]; var y = b[id];
                     return ((x < y) ? -1 : ((x > y) ? 1 : 0));
@@ -105,6 +108,88 @@ function StartTimer () {
             
             var standev = getStandardDeviation(results, average);
             document.getElementById("standev").innerHTML = "Standard Deviation: " + (standev / 100).toFixed(2);
+            
+            
+            
+            
+            
+            
+            
+            
+            var dataSec = (counter - (counter % 100)) / 100;
+            ys[dataSec]++;
+//            console.log(dataSec);
+//            console.log(ys);
+            var tcharData = [];
+            var charData = [];
+//            tcharData[0] = {x: 0, y: 0};
+//            tcharData[dataSec] = {x: dataSec, y:ys[dataSec]};
+//            console.log(best);
+//            console.log(worst);
+            
+            for (m = 0, l = parseInt(best / 100); l <= parseInt(worst / 100); l++, m++) {
+                tcharData[l] = {x: l, y:ys[l]};
+                charData[m] = tcharData[l];
+//                console.log(tcharData[l]);
+            }
+//            console.log(tcharData);
+            
+//            var charData = [];
+//            for (m = 0; m <= tcharData.length; m++) {
+//                
+//            }
+            
+            
+            
+//            var charData =  [
+//                { x: 16, y: 1 },
+//                { x: 17, y: 0 },
+//                { x: 18, y: 4 },
+//                { x: 19, y: 4 },
+//                { x: 20, y: 3 }       
+//            ];
+            
+            document.onkeypress = function () {
+            var chart = new CanvasJS.Chart("chartContainer",
+            {
+              title:{
+                text: "Times in seconds", 
+                fontWeight: "bolder",
+                fontColor: "#008B8B",
+                fontFamily: "tahoma",        
+
+                fontSize: 25,
+                padding: 10        
+              },
+              data: [
+              {        
+                type: "column",
+                dataPoints: charData
+              }
+              ]
+            });
+
+            chart.render();
+            }
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
         }
     }
     
@@ -144,3 +229,35 @@ function getStandardDeviation (data, mean) {
         return Math.sqrt(sumOfSquaredDiff / (dataSize - 1));
     }
 }
+
+//var charData =  [
+//        { x: 16, y: 1 },
+//        { x: 17, y: 3 },
+//        { x: 18, y: 4 },
+//        { x: 19, y: 4 },
+//        { x: 20, y: 3 }       
+//        ];
+
+    
+//window.onload = function () {
+//    var chart = new CanvasJS.Chart("chartContainer",
+//    {
+//      title:{
+//        text: "Golds won in 2012 London Olympics", 
+//        fontWeight: "bolder",
+//        fontColor: "#008B8B",
+//        fontFamily: "tahoma",        
+//
+//        fontSize: 25,
+//        padding: 10        
+//      },
+//      data: [
+//      {        
+//        type: "column",
+//        dataPoints: charData
+//      }
+//      ]
+//    });
+//
+//    chart.render();
+//}

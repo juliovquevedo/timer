@@ -24,8 +24,8 @@ body {
 }
 
 .results, .stats, .top10 {
-    min-height: 50vh;
-    max-height: 50vh;
+    min-height: 40vh;
+    max-height: 40vh;
     overflow: scroll;
 }
 
@@ -41,14 +41,22 @@ body {
     background-color: #AA6C39;
 }
 
-p {
+#timer {
+    float: left;
     text-align: center;
     font-size: 20vh;
+    width: 66.6%;
     margin: 0;
     height: 50vh;
     padding: 15vh 0;
     background-color: #804515;
     color: white;
+}
+
+#chartContainer {
+    float: left;
+    width: 33.3%;
+    height: 50vh;
 }
 
 .blank {
