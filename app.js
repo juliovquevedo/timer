@@ -20,21 +20,23 @@ function StartTimer () {
         function Timer () {
             output = "";
             counter++;
-            centisecs = counter % 100;
-
-            if (counter % 100 == 0) {
-                seconds++;
-                if (seconds > 59) {
-                    seconds = 0;
-                }
-            }
-            if (counter % 6000 == 0) {
-                minutes++;
-            }
-
-            output += minutes + ":";
-            seconds < 10 ? output += "0" + seconds + ":" : output += seconds + ":";
-            centisecs < 10 ? output += "0" + centisecs : output += centisecs;
+//            centisecs = counter % 100;
+//
+//            if (counter % 100 == 0) {
+//                seconds++;
+//                if (seconds > 59) {
+//                    seconds = 0;
+//                }
+//            }
+//            if (counter % 6000 == 0) {
+//                minutes++;
+//            }
+//
+//            output += minutes + ":";
+//            seconds < 10 ? output += "0" + seconds + ":" : output += seconds + ":";
+//            centisecs < 10 ? output += "0" + centisecs : output += centisecs;
+//            document.getElementById("timer").innerHTML = output;
+            output = counterToOutput(counter);
             document.getElementById("timer").innerHTML = output;
         }
     
@@ -68,24 +70,26 @@ function StartTimer () {
             
             total += counter;
             average = total / (i / 2);
+            
             var avgOutput = "";
-            var avgMin = parseInt(average / 6000);
-            average -= (avgMin * 6000);
-            var avgSec = parseInt(average / 100);
-            average -= (avgSec * 100);
-            console.log(average);
-            if (average.toFixed(0) == 100) {
-                average = 0;
-                avgSec++;
-            }
-            else {
-                average = average.toFixed(0);
-            }
-            
-            avgOutput += avgMin + ":";
-            avgSec < 10 ? avgOutput += "0" + avgSec + ":" : avgOutput += avgSec + ":";
-            average < 10 ? avgOutput += "0" + average : avgOutput += average;
-            
+            avgOutput = counterToOutput(average);
+//            var avgMin = parseInt(average / 6000);
+//            average -= (avgMin * 6000);
+//            var avgSec = parseInt(average / 100);
+//            average -= (avgSec * 100);
+//            console.log(average);
+//            if (average.toFixed(0) == 100) {
+//                average = 0;
+//                avgSec++;
+//            }
+//            else {
+//                average = average.toFixed(0);
+//            }
+//            
+//            avgOutput += avgMin + ":";
+//            avgSec < 10 ? avgOutput += "0" + avgSec + ":" : avgOutput += avgSec + ":";
+//            average < 10 ? avgOutput += "0" + average : avgOutput += average;
+//            
             document.getElementById("average").innerHTML = "Average: " + avgOutput;
             
             
@@ -128,4 +132,21 @@ function StartTimer () {
     }
     
     i++;
+}
+
+function counterToOutput (number) {
+    var n = parseInt(number);
+    var centi = n % 100;
+    n -= centi;
+    var min = parseInt(n / 6000);
+    n -= (min * 6000);
+    var sec = n / 100;
+    
+    var output = "";
+    
+    output += min + ":";
+    sec < 10 ? output += "0" + sec + ":" : output += sec + ":";
+    centi < 10 ? output += "0" + centi : output += centi;
+    
+    return output;
 }
