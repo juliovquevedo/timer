@@ -1,20 +1,25 @@
 document.body.onkeyup = StartTimer;
+
 var results = [];
 var best = Infinity;
 var worst = 0;
 var total = 0;
 var average = 0;
 var i = 1;
+var dataSet = [];
 var ys = [];
 ys.length = 180;
 ys.fill(0, 0, 179);
   
-function StartTimer () {
+function StartTimer (e) {
+    if (e.keyCode != 32){
+        return 0;
+    }
     
     var counter = 0;
     var minutes = 0;
     var seconds = 0;
-    var centisecs = 0;
+    var centisecs;
     var output = "";
     
     if (i % 2 == 1) {
@@ -28,9 +33,15 @@ function StartTimer () {
         }
     
     }
+    
     document.body.onkeypress = StopTimer;
-        
-    function StopTimer () {
+    
+    function StopTimer (e) {
+        console.log(e);
+        if (e.keyCode != 32){
+            return 0;
+        }
+
         if (i % 2 == 0) {
             clearInterval(stop);
             
@@ -67,7 +78,6 @@ function StartTimer () {
             
             
             results.push({id: counter, time: output});
-            
             function sortByKey (results, id) {
                 return results.sort(function(a, b) {
                     var x = a[id]; var y = b[id];
@@ -79,6 +89,11 @@ function StartTimer () {
             results.length > 10 ? resultsSize = 10 : resultsSize = results.length;
             var pa = document.getElementById("top10");
             pa.innerHTML = "";
+            
+
+            
+            
+            
             
             for (j = 0; j < resultsSize; j++) {
                 var d = document.createElement("div");
@@ -118,36 +133,15 @@ function StartTimer () {
             
             var dataSec = (counter - (counter % 100)) / 100;
             ys[dataSec]++;
-//            console.log(dataSec);
-//            console.log(ys);
             var tcharData = [];
             var charData = [];
-//            tcharData[0] = {x: 0, y: 0};
-//            tcharData[dataSec] = {x: dataSec, y:ys[dataSec]};
-//            console.log(best);
-//            console.log(worst);
+
             
             for (m = 0, l = parseInt(best / 100); l <= parseInt(worst / 100); l++, m++) {
                 tcharData[l] = {x: l, y:ys[l]};
                 charData[m] = tcharData[l];
-//                console.log(tcharData[l]);
             }
-//            console.log(tcharData);
-            
-//            var charData = [];
-//            for (m = 0; m <= tcharData.length; m++) {
-//                
-//            }
-            
-            
-            
-//            var charData =  [
-//                { x: 16, y: 1 },
-//                { x: 17, y: 0 },
-//                { x: 18, y: 4 },
-//                { x: 19, y: 4 },
-//                { x: 20, y: 3 }       
-//            ];
+
             
             document.onkeypress = function () {
             var chart = new CanvasJS.Chart("chartContainer",
@@ -170,24 +164,7 @@ function StartTimer () {
             });
 
             chart.render();
-            }
-
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
+            }   
             
             
         }
@@ -229,35 +206,3 @@ function getStandardDeviation (data, mean) {
         return Math.sqrt(sumOfSquaredDiff / (dataSize - 1));
     }
 }
-
-//var charData =  [
-//        { x: 16, y: 1 },
-//        { x: 17, y: 3 },
-//        { x: 18, y: 4 },
-//        { x: 19, y: 4 },
-//        { x: 20, y: 3 }       
-//        ];
-
-    
-//window.onload = function () {
-//    var chart = new CanvasJS.Chart("chartContainer",
-//    {
-//      title:{
-//        text: "Golds won in 2012 London Olympics", 
-//        fontWeight: "bolder",
-//        fontColor: "#008B8B",
-//        fontFamily: "tahoma",        
-//
-//        fontSize: 25,
-//        padding: 10        
-//      },
-//      data: [
-//      {        
-//        type: "column",
-//        dataPoints: charData
-//      }
-//      ]
-//    });
-//
-//    chart.render();
-//}
