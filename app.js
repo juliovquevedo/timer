@@ -46,38 +46,9 @@ function StartTimer (e) {
             
             clearInterval(stop);
             updateResults(output);
-            
-            
-            
-//            document.getElementById("titleResults").innerHTML = "Results (" + (i / 2) + ")";
-//            
-//            var div = document.createElement("div");
-//            var t = document.createTextNode(output);
-//            div.appendChild(t);
-//            var parent = document.getElementById("results");
-//            parent.insertBefore(div, parent.firstChild);
-            
-            
-            
-            
-            if (counter < best) {
-                best = counter;
-                document.getElementById("best").innerHTML = "Best: " + output;
-            }
-            if (counter > worst) {
-                worst = counter;
-                document.getElementById("worst").innerHTML = "Worst: " + output;
-            }
-            
-            total += counter;
-            average = total / (i / 2);
-            
-            var avgOutput = "";
-            avgOutput = counterToOutput(average);  
-            document.getElementById("average").innerHTML = "Average: " + avgOutput;
-            
-            
-            
+            updateBest(counter, output);
+            updateWorst(counter, output);
+            updateAverage(counter);
             
             
             results.push({id: counter, time: output});
@@ -185,6 +156,29 @@ function updateResults (output) {
     div.appendChild(t);
     parent = document.getElementById("results");
     parent.insertBefore(div, parent.firstChild);
+}
+
+function updateBest (counter, output) {
+    if (counter < best) {
+        best = counter;
+        document.getElementById("best").innerHTML = "Best: " + output;
+    }
+}
+
+function updateWorst (counter, output) {
+    if (counter > worst) {
+        worst = counter;
+        document.getElementById("worst").innerHTML = "Worst: " + output;
+    }
+}
+
+function updateAverage (counter) {
+    total += counter;
+    average = total / (i / 2);
+
+    avgOutput = "";
+    avgOutput = counterToOutput(average);  
+    document.getElementById("average").innerHTML = "Average: " + avgOutput;
 }
 
 function counterToOutput (number) {
