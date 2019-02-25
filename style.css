@@ -13,7 +13,7 @@ body {
 .results, .stats, .top10, [class|="title"] {
     float: left;
     width: 33.33%;
-    padding: 1rem;
+    padding: 1rem 1rem 1rem 3rem;
     font-size: 1.6rem;
     text-align: left;
 }
