@@ -43,6 +43,7 @@ function StartTimer (e) {
         }
 
         if (i % 2 == 0) {
+            
             clearInterval(stop);
             
             

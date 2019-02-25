@@ -45,7 +45,7 @@ body {
     float: left;
     text-align: center;
     font-size: 20vh;
-    width: 66.6%;
+    width: 66.66%;
     margin: 0;
     height: 50vh;
     padding: 15vh 0;
@@ -55,7 +55,7 @@ body {
 
 #chartContainer {
     float: left;
-    width: 33.3%;
+    width: 33.33%;
     height: 50vh;
     background-color: #D49A6A;
 }
