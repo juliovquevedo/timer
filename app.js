@@ -1,12 +1,13 @@
 document.body.onkeyup = StartTimer;
 
 var results = [];
+var resultsSize;
 var best = Infinity;
 var worst = 0;
 var total = 0;
 var average = 0;
 var i = 1;
-var dataSet = [];
+var charData = [];
 var ys = [];
 ys.length = 180;
 ys.fill(0, 0, 179);
@@ -17,14 +18,10 @@ function StartTimer (e) {
     }
     
     var counter = 0;
-    var minutes = 0;
-    var seconds = 0;
-    var centisecs;
     var output = "";
     
     if (i % 2 == 1) {
         var stop = setInterval(Timer, 10);
-//        output = "";
         
         function Timer () {
             counter++;
@@ -50,72 +47,13 @@ function StartTimer (e) {
             updateWorst(counter, output);
             updateAverage(counter);
             
+            resultsSize = sortResults(counter, output);
             
-            results.push({id: counter, time: output});
-            function sortByKey (results, id) {
-                return results.sort(function(a, b) {
-                    var x = a[id]; var y = b[id];
-                    return ((x < y) ? -1 : ((x > y) ? 1 : 0));
-                });
-            }
-            
-            results = sortByKey(results, 'id');
-            results.length > 10 ? resultsSize = 10 : resultsSize = results.length;
-            var pa = document.getElementById("top10");
-            pa.innerHTML = "";
-            
-
-            
-            
-            
-            
-            for (j = 0; j < resultsSize; j++) {
-                var d = document.createElement("div");
-                var t = document.createTextNode(results[j].time);
-                d.appendChild(t);
-                pa.appendChild(d);
-            }
-            
-            
-            
-            
-            
-            var median;
-            var size = results.length;
-            if (size % 2 == 1) {
-                median = results[parseInt(size / 2)].time;
-            }
-            else {
-                median = (results[size / 2].id + results[size / 2 - 1].id) / 2;
-                median = counterToOutput(median);
-            }
-            document.getElementById("median").innerHTML = "Median: " + median;
-            
-            
-            
-            
-            
-            var standev = getStandardDeviation(results, average);
-            document.getElementById("standev").innerHTML = "Standard Deviation: " + (standev / 100).toFixed(2);
-            
-            
-            
-            
-            
-            
-            
-            
-            var dataSec = (counter - (counter % 100)) / 100;
-            ys[dataSec]++;
-            var tcharData = [];
-            var charData = [];
-
-            
-            for (m = 0, l = parseInt(best / 100); l <= parseInt(worst / 100); l++, m++) {
-                tcharData[l] = {x: l, y:ys[l]};
-                charData[m] = tcharData[l];
-            }
-
+            updateTop10(resultsSize);
+            updateMedian(resultsSize);
+            updateStandardDeviation();
+            updateChartData(counter);
+           
             
             document.onkeypress = function () {
             var chart = new CanvasJS.Chart("chartContainer",
@@ -181,6 +119,62 @@ function updateAverage (counter) {
     document.getElementById("average").innerHTML = "Average: " + avgOutput;
 }
 
+function sortResults (counter, output) {
+    results.push({id: counter, time: output});
+    function sortByKey (results, id) {
+        return results.sort(function(a, b) {
+            var x = a[id];
+            var y = b[id];
+            return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+        });
+    }
+
+    results = sortByKey(results, "id");
+    return results.length;
+}
+
+function updateTop10 (resultsSize) {
+    resultsSize > 10 ? size = 10 : size = resultsSize;
+    pa = document.getElementById("top10");
+    pa.innerHTML = "";
+
+    for (j = 0; j < size; j++) {
+        div = document.createElement("div");
+        t = document.createTextNode(results[j].time);
+        div.appendChild(t);
+        pa.appendChild(div);
+    }
+}
+
+function updateMedian (resultsSize) {
+    median;
+    size = resultsSize;
+    if (size % 2 == 1) {
+        median = results[parseInt(size / 2)].time;
+    }
+    else {
+        median = (results[size / 2].id + results[size / 2 - 1].id) / 2;
+        median = counterToOutput(median);
+    }
+    document.getElementById("median").innerHTML = "Median: " + median;
+}
+
+function updateStandardDeviation () {
+    var standev = getStandardDeviation(results, average);
+    document.getElementById("standev").innerHTML = "Standard Deviation: " + (standev / 100).toFixed(2);
+}
+
+function updateChartData (counter) {
+    dataSec = (counter - (counter % 100)) / 100;
+    ys[dataSec]++;
+    tcharData = [];
+
+    for (m = 0, l = parseInt(best / 100); l <= parseInt(worst / 100); l++, m++) {
+        tcharData[l] = {x: l, y:ys[l]};
+        charData[m] = tcharData[l];
+    }
+}
+
 function counterToOutput (number) {
     var n = parseInt(number);
     var centi = n % 100;
@@ -215,8 +209,8 @@ function getStandardDeviation (data, mean) {
     }
 }
 
-document.getElementById("deleteLastEntry").onclick = DeleteLastEntry;
+document.getElementById("deleteLastEntry").onclick = deleteLastEntry;
 
-function DeleteLastEntry() {
+function deleteLastEntry() {
     
 }
