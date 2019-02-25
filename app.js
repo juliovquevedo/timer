@@ -41,6 +41,9 @@ function StartTimer (e) {
 
         if (i % 2 == 0) {
             
+            document.getElementById("deleteLastEntry").style.visibility = "visible";
+            document.getElementById("deleteLastEntry").innerHTML = "delete last entry";
+            
             clearInterval(stop);
             updateResults(output);
             updateBest(counter, output);
@@ -216,6 +219,11 @@ function deleteLastEntry() {
 }
 
 function removeResults () {
+    i -= 3;
+    document.getElementById("titleResults").innerHTML = "Results (" + (i / 2) + ")";
+    
     pa = document.getElementById("results");
     pa.removeChild(pa.firstChild);
+    document.getElementById("deleteLastEntry").style.visibility = "hidden";
+    i++;
 }
