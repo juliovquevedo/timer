@@ -24,9 +24,9 @@ function StartTimer (e) {
     
     if (i % 2 == 1) {
         var stop = setInterval(Timer, 10);
-
+//        output = "";
+        
         function Timer () {
-            output = "";
             counter++;
             output = counterToOutput(counter);
             document.getElementById("timer").innerHTML = output;
@@ -37,7 +37,7 @@ function StartTimer (e) {
     document.body.onkeypress = StopTimer;
     
     function StopTimer (e) {
-//        console.log(e);
+
         if (e.keyCode != 32){
             return 0;
         }
@@ -45,16 +45,17 @@ function StartTimer (e) {
         if (i % 2 == 0) {
             
             clearInterval(stop);
+            updateResults(output);
             
             
             
-            document.getElementById("titleResults").innerHTML = "Results (" + (i / 2) + ")";
-            
-            var div = document.createElement("div");
-            var t = document.createTextNode(output);
-            div.appendChild(t);
-            var parent = document.getElementById("results");
-            parent.insertBefore(div, parent.firstChild);
+//            document.getElementById("titleResults").innerHTML = "Results (" + (i / 2) + ")";
+//            
+//            var div = document.createElement("div");
+//            var t = document.createTextNode(output);
+//            div.appendChild(t);
+//            var parent = document.getElementById("results");
+//            parent.insertBefore(div, parent.firstChild);
             
             
             
@@ -175,6 +176,17 @@ function StartTimer (e) {
     i++;
 }
 
+function updateResults (output) {
+    
+    document.getElementById("titleResults").innerHTML = "Results (" + (i / 2) + ")";
+            
+    div = document.createElement("div");
+    t = document.createTextNode(output);
+    div.appendChild(t);
+    parent = document.getElementById("results");
+    parent.insertBefore(div, parent.firstChild);
+}
+
 function counterToOutput (number) {
     var n = parseInt(number);
     var centi = n % 100;
@@ -207,4 +219,10 @@ function getStandardDeviation (data, mean) {
     else {
         return Math.sqrt(sumOfSquaredDiff / (dataSize - 1));
     }
+}
+
+document.getElementById("deleteLastEntry").onclick = DeleteLastEntry;
+
+function DeleteLastEntry() {
+    
 }
