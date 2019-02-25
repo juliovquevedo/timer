@@ -56,26 +56,26 @@ function StartTimer (e) {
            
             
             document.onkeypress = function () {
-            var chart = new CanvasJS.Chart("chartContainer",
-            {
-              title:{
-                text: "Times in seconds", 
-                fontWeight: "bolder",
-                fontColor: "#008B8B",
-                fontFamily: "tahoma",        
+                var chart = new CanvasJS.Chart("chartContainer",
+                {
+                  title:{
+                    text: "Times in seconds", 
+                    fontWeight: "bolder",
+                    fontColor: "#008B8B",
+                    fontFamily: "tahoma",        
 
-                fontSize: 25,
-                padding: 10        
-              },
-              data: [
-              {        
-                type: "column",
-                dataPoints: charData
-              }
-              ]
-            });
+                    fontSize: 25,
+                    padding: 10        
+                  },
+                  data: [
+                  {        
+                    type: "column",
+                    dataPoints: charData
+                  }
+                  ]
+                });
 
-            chart.render();
+                chart.render();
             }   
             
             
