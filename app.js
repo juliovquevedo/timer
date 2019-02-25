@@ -37,7 +37,7 @@ function StartTimer (e) {
     document.body.onkeypress = StopTimer;
     
     function StopTimer (e) {
-        console.log(e);
+//        console.log(e);
         if (e.keyCode != 32){
             return 0;
         }
