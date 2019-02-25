@@ -47,6 +47,7 @@ function StartTimer (e) {
             clearInterval(stop);
             
             
+            
             document.getElementById("titleResults").innerHTML = "Results (" + (i / 2) + ")";
             
             var div = document.createElement("div");

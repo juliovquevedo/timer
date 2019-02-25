@@ -63,3 +63,8 @@ body {
 .blank {
     height: 1rem;
 }
+
+.title-left button {
+    background-color: inherit;
+    border: none;
+}
