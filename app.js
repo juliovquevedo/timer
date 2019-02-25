@@ -212,5 +212,10 @@ function getStandardDeviation (data, mean) {
 document.getElementById("deleteLastEntry").onclick = deleteLastEntry;
 
 function deleteLastEntry() {
-    
+    removeResults();
+}
+
+function removeResults () {
+    pa = document.getElementById("results");
+    pa.removeChild(pa.firstChild);
 }
