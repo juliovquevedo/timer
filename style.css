@@ -53,6 +53,22 @@ body {
     color: white;
 }
 
+.spacebar {
+    position: absolute;
+    top: 40vh;
+    left: calc(calc(66.67vw - 500px) / 2);
+    font-size: 4.66vh;
+    opacity: 0;
+    animation-name: spacebar;
+    animation-duration: 3s;
+}
+
+@keyframes spacebar {
+    1% {opacity: 0.2;}
+    90% {opacity: 0.2;}
+    100% {opacity: 0;}
+}
+
 #chartContainer {
     float: left;
     width: 33.33%;
