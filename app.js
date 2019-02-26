@@ -247,6 +247,7 @@ function removeLastBest () {
         else {
             results.shift();
             document.getElementById("best").innerHTML = "Best: " + results[0].time;
+            best = results[0].id;
         }
     }
 }
