@@ -67,6 +67,9 @@ function StartTimer (e) {
                 removeLastWorst();
                 removeLastAverage();
                 removeLastTop10(used);
+                updateMedian(resultsSize);
+                updateStandardDeviation();
+                updateChartData(counter);
             }
 
             
@@ -166,7 +169,10 @@ function updateTop10 (resultsSize) {
 }
 
 function updateMedian (resultsSize) {
-    median;
+    if(resultsSize == 0) {
+        document.getElementById("median").innerHTML = "";
+        return 0;
+    }
     size = resultsSize;
     if (size % 2 == 1) {
         median = results[parseInt(size / 2)].time;
