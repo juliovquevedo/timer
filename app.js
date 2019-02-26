@@ -46,7 +46,7 @@ function StartTimer (e) {
         if (i % 2 == 0) {
             
             document.getElementById("deleteLastEntry").style.visibility = "visible";
-            document.getElementById("deleteLastEntry").innerHTML = "del";
+            document.getElementById("deleteLastEntry").innerHTML = "delete last";
             
             clearInterval(stop);
             updateResults(output);

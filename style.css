@@ -21,6 +21,7 @@ body {
 [class|="title"] {
     text-transform: uppercase;
     font-weight: bold;
+    max-height: 3rem;
 }
 
 .results, .stats, .top10 {
@@ -83,4 +84,5 @@ body {
 .title-left button {
     background-color: inherit;
     border: none;
+    overflow: visible;
 }
