@@ -48,40 +48,52 @@ function StartTimer (e) {
             
             clearInterval(stop);
             updateResults(output);
-            
             resultsSize = sortResults(counter, output);
-            
             updateBest(counter, output);
             updateWorst(counter, output);
             updateAverage(counter);
-            
-//            resultsSize = sortResults(counter, output);
-            
             updateTop10(resultsSize);
             updateMedian(resultsSize);
             updateStandardDeviation();
             updateChartData(counter);
+            
+            
+            
+            
+            
+            
+            
+            document.getElementById("deleteLastEntry").onclick = deleteLastEntry;
+
+            function deleteLastEntry () {
+                removeLastResult();
+                removeLastBest();
+                removeLastWorst();
+                removeLastAverage();
+            }
+
+            
+            
+            
+            
+            
            
             
             document.onkeypress = function () {
-                var chart = new CanvasJS.Chart("chartContainer",
-                {
-                  title:{
-                    text: "Times in seconds", 
-                    fontWeight: "bolder",
-                    fontColor: "#008B8B",
-                    fontFamily: "tahoma",        
-
-                    fontSize: 25,
-                    padding: 10        
-                  },
-                  data: [
-                  {        
-                    type: "column",
-                    dataPoints: charData
-                  }
-                  ]
-                });
+                var chart = new CanvasJS.Chart("chartContainer", {
+                    title:{
+                        text: "Times in seconds", 
+                        fontWeight: "bolder",
+                        fontColor: "#008B8B",
+                        fontFamily: "tahoma",        
+                        fontSize: 25,
+                        padding: 10        
+                    },
+                    data:[{        
+                        type: "column",
+                        dataPoints: charData
+                         }]
+                    });
 
                 chart.render();
             }   
@@ -219,13 +231,13 @@ function getStandardDeviation (data, mean) {
     }
 }
 
-document.getElementById("deleteLastEntry").onclick = deleteLastEntry;
-
-function deleteLastEntry () {
-    removeLastResult();
-    removeLastBest();
-    removeLastWorst();
-}
+//document.getElementById("deleteLastEntry").onclick = deleteLastEntry;
+//
+//function deleteLastEntry () {
+//    removeLastResult();
+//    removeLastBest();
+//    removeLastWorst();
+//}
 
 function removeLastResult () {
     i -= 3;
@@ -259,9 +271,29 @@ function removeLastWorst () {
         document.getElementById("worst").innerHTML = "";
         worst = 0;
     } 
-    else if(output === results[resultsSize - 1].time) {
+    else if(results[0].time !== output && output === results[resultsSize - 1].time) {
         results.pop();
         document.getElementById("worst").innerHTML = "Worst: " + results[resultsSize - 2].time;
         worst = results[resultsSize -2].id;
     }
+}
+
+function removeLastAverage () {
+    if(resultsSize == 0) {
+        document.getElementById("average").innerHTML = "";
+        total = 0;
+    }
+    else {
+        ctr = outputToCounter(output);
+        average = (total - ctr) / ((i-1) / 2);
+        total -= ctr;
+        avgOutput = counterToOutput(average);  
+        document.getElementById("average").innerHTML = "Average: " + avgOutput;
+    }
+}
+
+function outputToCounter (output) {
+    ctr = output.split(":");
+    ctr = parseInt(ctr[0]) * 6000 + parseInt(ctr[1]) * 100 + parseInt(ctr[2]);
+    return ctr;
 }
