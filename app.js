@@ -8,6 +8,7 @@ var best = Infinity;
 var worst = 0;
 var total = 0;
 var average = 0;
+var used;
 var i = 1;
 var charData = [];
 var ys = [];
@@ -57,19 +58,15 @@ function StartTimer (e) {
             updateStandardDeviation();
             updateChartData(counter);
             
-            
-            
-            
-            
-            
-            
             document.getElementById("deleteLastEntry").onclick = deleteLastEntry;
 
             function deleteLastEntry () {
+                used = false;
                 removeLastResult();
                 removeLastBest();
                 removeLastWorst();
                 removeLastAverage();
+                removeLastTop10(used);
             }
 
             
@@ -231,14 +228,6 @@ function getStandardDeviation (data, mean) {
     }
 }
 
-//document.getElementById("deleteLastEntry").onclick = deleteLastEntry;
-//
-//function deleteLastEntry () {
-//    removeLastResult();
-//    removeLastBest();
-//    removeLastWorst();
-//}
-
 function removeLastResult () {
     i -= 3;
     document.getElementById("titleResults").innerHTML = "Results (" + (i / 2) + ")";
@@ -263,6 +252,7 @@ function removeLastBest () {
             best = results[0].id;
             resultsSize--;
         }
+        used = true;
     }
 }
 
@@ -270,11 +260,14 @@ function removeLastWorst () {
     if(resultsSize == 0) {
         document.getElementById("worst").innerHTML = "";
         worst = 0;
+        used = true;
     } 
     else if(results[0].time !== output && output === results[resultsSize - 1].time) {
         results.pop();
         document.getElementById("worst").innerHTML = "Worst: " + results[resultsSize - 2].time;
         worst = results[resultsSize -2].id;
+        resultsSize--;
+        used = true;
     }
 }
 
@@ -290,6 +283,23 @@ function removeLastAverage () {
         avgOutput = counterToOutput(average);  
         document.getElementById("average").innerHTML = "Average: " + avgOutput;
     }
+}
+
+function removeLastTop10 (used) {
+    if(used) {
+        updateTop10(resultsSize);
+    }
+    else {
+        for(z = 0; z < resultsSize; z++) {
+            if(output === results[z].time) {
+                results.splice(z, 1);
+                resultsSize--;
+                updateTop10(resultsSize);
+                return 0;
+            }
+        }
+    }
+    
 }
 
 function outputToCounter (output) {
