@@ -243,19 +243,25 @@ function removeLastBest () {
             results.pop();
             document.getElementById("best").innerHTML = "";
             best = Infinity;
+            resultsSize--;
         }
         else {
             results.shift();
             document.getElementById("best").innerHTML = "Best: " + results[0].time;
             best = results[0].id;
+            resultsSize--;
         }
     }
 }
 
 function removeLastWorst () {
-    console.log(resultsSize);
-    if(output === results[resultsSize - 1].time) {
+    if(resultsSize == 0) {
+        document.getElementById("worst").innerHTML = "";
+        worst = 0;
+    } 
+    else if(output === results[resultsSize - 1].time) {
         results.pop();
         document.getElementById("worst").innerHTML = "Worst: " + results[resultsSize - 2].time;
+        worst = results[resultsSize -2].id;
     }
 }
