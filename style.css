@@ -32,6 +32,7 @@ body {
 
 .results, .title-left {
     background-color: #AA6C39;
+    overflow: scroll;
 }
 
 .stats, .title-center {
