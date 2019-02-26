@@ -8,7 +8,7 @@ var best = Infinity;
 var worst = 0;
 var total = 0;
 var average = 0;
-var used;
+var used = false;
 var i = 1;
 var charData = [];
 var ys = [];
@@ -22,6 +22,7 @@ function StartTimer (e) {
     
 //    counter = 0;
 //    var output = "";
+    used = false;
     
     if (i % 2 == 1) {
         var stop = setInterval(Timer, 10);
@@ -69,6 +70,7 @@ function StartTimer (e) {
                 removeLastTop10(used);
                 updateMedian(resultsSize);
                 updateStandardDeviation();
+                used = true;
                 updateChartData(counter);
             }
 
@@ -190,6 +192,11 @@ function updateStandardDeviation () {
 }
 
 function updateChartData (counter) {
+    if(used) {
+        ys[0]--;
+        q = parseInt(outputToCounter(output) / 100);
+        ys[q]--;
+    }
     dataSec = (counter - (counter % 100)) / 100;
     ys[dataSec]++;
     tcharData = [];
