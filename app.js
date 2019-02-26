@@ -1,5 +1,7 @@
 document.body.onkeyup = StartTimer;
 
+var counter = 0;
+var output = "";
 var results = [];
 var resultsSize;
 var best = Infinity;
@@ -17,8 +19,8 @@ function StartTimer (e) {
         return 0;
     }
     
-    var counter = 0;
-    var output = "";
+//    counter = 0;
+//    var output = "";
     
     if (i % 2 == 1) {
         var stop = setInterval(Timer, 10);
@@ -46,11 +48,14 @@ function StartTimer (e) {
             
             clearInterval(stop);
             updateResults(output);
+            
+            resultsSize = sortResults(counter, output);
+            
             updateBest(counter, output);
             updateWorst(counter, output);
             updateAverage(counter);
             
-            resultsSize = sortResults(counter, output);
+//            resultsSize = sortResults(counter, output);
             
             updateTop10(resultsSize);
             updateMedian(resultsSize);
@@ -83,6 +88,7 @@ function StartTimer (e) {
             
             
         }
+        counter = 0;
     }
     
     i++;
@@ -103,6 +109,7 @@ function updateBest (counter, output) {
     if (counter < best) {
         best = counter;
         document.getElementById("best").innerHTML = "Best: " + output;
+//        document.getElementById("best").innerHTML ="Best: " + results[0].time;
     }
 }
 
@@ -214,11 +221,13 @@ function getStandardDeviation (data, mean) {
 
 document.getElementById("deleteLastEntry").onclick = deleteLastEntry;
 
-function deleteLastEntry() {
-    removeResults();
+function deleteLastEntry () {
+    removeLastResult();
+    removeLastBest();
+    removeLastWorst();
 }
 
-function removeResults () {
+function removeLastResult () {
     i -= 3;
     document.getElementById("titleResults").innerHTML = "Results (" + (i / 2) + ")";
     
@@ -226,4 +235,26 @@ function removeResults () {
     pa.removeChild(pa.firstChild);
     document.getElementById("deleteLastEntry").style.visibility = "hidden";
     i++;
+}
+
+function removeLastBest () {
+    if(output === results[0].time) {
+        if(resultsSize == 1){
+            results.pop();
+            document.getElementById("best").innerHTML = "";
+            best = Infinity;
+        }
+        else {
+            results.shift();
+            document.getElementById("best").innerHTML = "Best: " + results[0].time;
+        }
+    }
+}
+
+function removeLastWorst () {
+    console.log(resultsSize);
+    if(output === results[resultsSize - 1].time) {
+        results.pop();
+        document.getElementById("worst").innerHTML = "Worst: " + results[resultsSize - 2].time;
+    }
 }
