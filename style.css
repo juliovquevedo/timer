@@ -21,18 +21,17 @@ body {
 [class|="title"] {
     text-transform: uppercase;
     font-weight: bold;
-    max-height: 3rem;
+    min-height: 6rem;
+    max-height: 6rem;
 }
 
 .results, .stats, .top10 {
     min-height: 40vh;
     max-height: 40vh;
-    overflow: scroll;
 }
 
 .results, .title-left {
     background-color: #AA6C39;
-    overflow: scroll;
 }
 
 .stats, .title-center {
