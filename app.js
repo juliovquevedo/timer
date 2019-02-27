@@ -1,4 +1,6 @@
 document.body.onkeyup = StartTimer;
+//document.addEventListener("keyup", StartTimer);
+//document.addEventListener("click", StartTimer);
 
 var counter = 0;
 var output = "";
@@ -16,10 +18,11 @@ ys.length = 180;
 ys.fill(0, 0, 179);
   
 function StartTimer (e) {
+    e.preventDefault();
     if (e.keyCode != 32){
         return 0;
     }
-    
+    window.scroll(0,0);
 //    counter = 0;
 //    var output = "";
     used = false;
@@ -42,7 +45,7 @@ function StartTimer (e) {
         if (e.keyCode != 32){
             return 0;
         }
-
+        e.preventDefault();
         if (i % 2 == 0) {
             
             document.getElementById("deleteLastEntry").style.visibility = "visible";
@@ -81,7 +84,8 @@ function StartTimer (e) {
             
            
             
-            document.onkeypress = function () {
+            document.onkeypress = function (e) {
+                e.preventDefault();
                 var chart = new CanvasJS.Chart("chartContainer", {
                     title:{
                         text: "Times in seconds", 
