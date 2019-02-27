@@ -1,6 +1,4 @@
 document.body.onkeyup = StartTimer;
-//document.addEventListener("keyup", StartTimer);
-//document.addEventListener("click", StartTimer);
 
 var counter = 0;
 var output = "";
