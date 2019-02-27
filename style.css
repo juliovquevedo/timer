@@ -35,7 +35,7 @@ body {
 }
 
 .results {
-    overflow: hidden;
+    overflow: scroll;
 }
 
 .stats, .title-center {
