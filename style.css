@@ -21,8 +21,8 @@ body {
 [class|="title"] {
     text-transform: uppercase;
     font-weight: bold;
-    min-height: 6rem;
-    max-height: 6rem;
+    min-height: 5rem;
+    max-height: 5rem;
 }
 
 .results, .stats, .top10 {
@@ -32,6 +32,10 @@ body {
 
 .results, .title-left {
     background-color: #AA6C39;
+}
+
+.results {
+    overflow: hidden;
 }
 
 .stats, .title-center {
