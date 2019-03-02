@@ -1,4 +1,12 @@
+
+
+
 document.body.onkeyup = StartTimer;
+
+//document.body.addEventListener("keyup", StartTimer);
+//document.getElementById("timer").addEventListener("click", StartTimer);
+//document.getElementById("timer").addEventListener("click", StartTimer);
+//document.addEventListener("click", StartTimer);
 
 var counter = 0;
 var output = "";
@@ -16,13 +24,11 @@ ys.length = 180;
 ys.fill(0, 0, 179);
   
 function StartTimer (e) {
-    e.preventDefault();
+//    console.log(e);
     if (e.keyCode != 32){
         return 0;
     }
     window.scroll(0,0);
-//    counter = 0;
-//    var output = "";
     used = false;
     
     if (i % 2 == 1) {
@@ -37,6 +43,8 @@ function StartTimer (e) {
     }
     
     document.body.onkeypress = StopTimer;
+//    document.body.addEventListener("keypress", StopTimer);
+//    document.getElementById("timer").addEventListener("click", StopTimer);
     
     function StopTimer (e) {
 
@@ -322,3 +330,7 @@ function outputToCounter (output) {
     ctr = parseInt(ctr[0]) * 6000 + parseInt(ctr[1]) * 100 + parseInt(ctr[2]);
     return ctr;
 }
+    
+    
+    
+    
