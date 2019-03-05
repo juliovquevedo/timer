@@ -1,11 +1,9 @@
 #chartholder {
-    height: 500px;
-    width: 500px;
+    height: 50vw;
+    width: 50vw;
     margin: 0 auto;
 }
 
-canvas {
-    height: 100%;
-    width: 100%;
+#chart {
     border: solid black 1px;
 }
