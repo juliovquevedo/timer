@@ -203,13 +203,16 @@ function updateStandardDeviation () {
 
 function updateChartData (counter) {
     if(used) {
-        ys[0]--;
         q = parseInt(outputToCounter(output) / 100);
         ys[q]--;
     }
-    dataSec = (counter - (counter % 100)) / 100;
-    ys[dataSec]++;
+    else {
+        dataSec = (counter - (counter % 100)) / 100;
+        ys[dataSec]++;
+    }
+    
     tcharData = [];
+    charData = [];
 
     for (m = 0, l = parseInt(best / 100); l <= parseInt(worst / 100); l++, m++) {
         tcharData[l] = {x: l, y:ys[l]};
