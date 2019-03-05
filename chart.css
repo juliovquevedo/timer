@@ -1,0 +1,11 @@
+#chartholder {
+    height: 500px;
+    width: 500px;
+    margin: 0 auto;
+}
+
+canvas {
+    height: 100%;
+    width: 100%;
+    border: solid black 1px;
+}
