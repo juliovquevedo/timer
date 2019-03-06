@@ -23,9 +23,9 @@ function drawChart (chartWidth, chartHeight) {
     var c = document.getElementById("chart");
     var ctx = c.getContext("2d");
     charData2 = [{x:0, y:1},
-                 {x:1, y:2},
-                 {x:2, y:3},
-                 {x:3, y:2},
+                 {x:1, y:1},
+                 {x:2, y:1850},
+                 {x:3, y:1},
                  {x:4, y:1},
                  {x:5, y:1},
                 ];
@@ -34,19 +34,21 @@ function drawChart (chartWidth, chartHeight) {
     
     xRange = charData2.length;
     yRange = getLargestValue(charData2, xRange);
-    drawXAxis();
-    drawYAxis();
+    yPartitions = calculateYpartitions(yRange);
+    console.log(yPartitions);
+    drawXaxis();
+    drawYaxis();
     
     
     
     
-    function drawXAxis () {
+    function drawXaxis () {
         ctx.moveTo(startXaxis, zeroYaxis);
         ctx.lineTo(endXaxis, zeroYaxis);
         ctx.stroke();
     }
     
-    function drawYAxis () {
+    function drawYaxis () {
         ctx.moveTo(zeroXaxis, startYaxis);
         ctx.lineTo(zeroXaxis, endYaxis);
         ctx.stroke();
@@ -60,5 +62,38 @@ function drawChart (chartWidth, chartHeight) {
             }
         }
         return largest;
+    }
+    
+    function calculateYpartitions (yRange) {
+        if(yRange == 1) {
+            return 6;
+        }
+        firstDigit = parseInt(yRange.toString().slice(0,1));
+        
+        if(yRange > 9 && firstDigit == 1) {
+            secondDigit = parseInt(yRange.toString().slice(1,2));
+            switch(secondDigit) {
+                case 0:
+                case 1:
+                    return Math.pow(10, parseInt(Math.log10(yRange))) * 6 / 5;
+                case 2:
+                case 3:
+                    return Math.pow(10, parseInt(Math.log10(yRange)) - 1) * 14;
+                case 4:
+                case 5:
+                    return Math.pow(10, parseInt(Math.log10(yRange)) - 1) * 16;    
+                case 6:
+                case 7:
+                    return Math.pow(10, parseInt(Math.log10(yRange)) - 1) * 18;
+                case 8:
+                case 9:
+                    return Math.pow(10, parseInt(Math.log10(yRange))) * 2;
+            }
+        }
+        
+        if(firstDigit != 1) {
+            return (firstDigit * Math.pow(10, parseInt(Math.log10(yRange)))) * ((firstDigit + 1) / firstDigit)
+        }
+        
     }
 }
