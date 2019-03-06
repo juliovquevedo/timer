@@ -13,6 +13,13 @@ function setChartDimensions () {
 }
 
 function drawChart (chartWidth, chartHeight) {
+    var startXaxis = chartWidth * .06;
+    var zeroXaxis = chartWidth * .07;
+    var endXaxis = chartWidth * .98;
+    var startYaxis = chartHeight * .95;
+    var zeroYaxis = chartHeight * .94;
+    var endYaxis = chartHeight * .13;
+    
     var c = document.getElementById("chart");
     var ctx = c.getContext("2d");
     charData2 = [{x:0, y:1},
@@ -34,14 +41,14 @@ function drawChart (chartWidth, chartHeight) {
     
     
     function drawXAxis () {
-        ctx.moveTo(chartWidth*.06,chartHeight*.94);
-        ctx.lineTo(chartWidth*.98,chartHeight*.94);
+        ctx.moveTo(startXaxis, zeroYaxis);
+        ctx.lineTo(endXaxis, zeroYaxis);
         ctx.stroke();
     }
     
     function drawYAxis () {
-        ctx.moveTo(chartWidth*.07,chartHeight*.95);
-        ctx.lineTo(chartWidth*.07,chartHeight*.13);
+        ctx.moveTo(zeroXaxis, startYaxis);
+        ctx.lineTo(zeroXaxis, endYaxis);
         ctx.stroke();
     }
     
