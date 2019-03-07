@@ -9,10 +9,7 @@ function setChartDimensions (charData) {
     document.getElementsByTagName("canvas")[0].setAttribute("height", chartHeight);
     document.getElementsByTagName("canvas")[0].setAttribute("width", chartWidth);
     
-    if(charData != undefined){
-       drawChart(chartWidth, chartHeight, charData); 
-    }    
-    
+    drawChart(chartWidth, chartHeight, charData); 
 }
 
 function drawChart (chartWidth, chartHeight, charData) {
