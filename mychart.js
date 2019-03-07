@@ -22,8 +22,9 @@ function drawChart (chartWidth, chartHeight) {
     
     var c = document.getElementById("chart");
     var ctx = c.getContext("2d");
-    charData2 = [{x:0, y:134},
-                 
+    charData2 = [{x:0, y:4},
+                 {x:1, y:3},
+                 {x:2, y:5},
                 ];
     
     
@@ -94,16 +95,29 @@ function drawChart (chartWidth, chartHeight) {
     function drawBars (xRange, yRange, yPartitions, charData2) {
         xWidth = endXaxis - zeroXaxis;
         yHeight = zeroYaxis - endYaxis;
-        if(xRange == 1) {
+        if(xRange < 7) {
+            for (n = 1; n <= xRange; n++) {
             ctx.beginPath();
             ctx.strokeStyle = "blue";
-            ctx.rect((xWidth * 6 - xWidth * xRange) / (6 * xRange + 6) + zeroXaxis,
-                     yHeight / yPartitions * (yPartitions - yRange) + endYaxis,
+            ctx.rect((xWidth * 6 - xWidth * n) / (6 * n + 6) + zeroXaxis,
+                     yHeight / yPartitions * (yPartitions - charData2[n - 1].y) + endYaxis,
                      xWidth / 6,
-                     zeroYaxis - (yHeight / yPartitions * (yPartitions - yRange) + endYaxis) - 1);
+                     zeroYaxis - (yHeight / yPartitions * (yPartitions - charData2[n - 1].y) + endYaxis) - 1);
             ctx.fillStyle = "blue";
             ctx.fill();
             ctx.stroke();
+            }
         }
+//        if(xRange == 1) {
+//            ctx.beginPath();
+//            ctx.strokeStyle = "blue";
+//            ctx.rect((xWidth * 6 - xWidth * xRange) / (6 * xRange + 6) + zeroXaxis,
+//                     yHeight / yPartitions * (yPartitions - yRange) + endYaxis,
+//                     xWidth / 6,
+//                     zeroYaxis - (yHeight / yPartitions * (yPartitions - yRange) + endYaxis) - 1);
+//            ctx.fillStyle = "blue";
+//            ctx.fill();
+//            ctx.stroke();
+//        }
     }
 }
