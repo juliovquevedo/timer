@@ -16,14 +16,13 @@ function drawChart (chartWidth, chartHeight) {
     var startXaxis = chartWidth * .06;
     var zeroXaxis = chartWidth * .07;
     var endXaxis = chartWidth * .98;
-    console.log(endXaxis - zeroXaxis);
     var startYaxis = chartHeight * .95;
     var zeroYaxis = chartHeight * .94;
     var endYaxis = chartHeight * .13;
     
     var c = document.getElementById("chart");
     var ctx = c.getContext("2d");
-    charData2 = [{x:0, y:1},
+    charData2 = [{x:0, y:134},
                  
                 ];
     
@@ -63,7 +62,7 @@ function drawChart (chartWidth, chartHeight) {
     
     function calculateYpartitions (yRange) {
         if(yRange == 1) {
-            return 6;
+            return 1.2;
         }
         firstDigit = parseInt(yRange.toString().slice(0,1));
         
@@ -78,7 +77,7 @@ function drawChart (chartWidth, chartHeight) {
                     return Math.pow(10, parseInt(Math.log10(yRange)) - 1) * 14;
                 case 4:
                 case 5:
-                    return Math.pow(10, parseInt(Math.log10(yRange)) - 1) * 16;    
+                    return Math.pow(10, parseInt(Math.log10(yRange)) - 1) * 16;
                 case 6:
                 case 7:
                     return Math.pow(10, parseInt(Math.log10(yRange)) - 1) * 18;
@@ -88,9 +87,9 @@ function drawChart (chartWidth, chartHeight) {
             }
         }
         
-        return (firstDigit * Math.pow(10, parseInt(Math.log10(yRange)))) * ((firstDigit + 1) / firstDigit)
+        return (firstDigit * Math.pow(10, parseInt(Math.log10(yRange)))) * ((firstDigit + 1) / firstDigit);
         
-    }
+    }//                     xWidth / 6 * 2.5 + zeroXaxis,
     
     function drawBars (xRange, yRange, yPartitions, charData2) {
         xWidth = endXaxis - zeroXaxis;
@@ -98,10 +97,10 @@ function drawChart (chartWidth, chartHeight) {
         if(xRange == 1) {
             ctx.beginPath();
             ctx.strokeStyle = "blue";
-            ctx.rect(xWidth / 7 * 3 + zeroXaxis,
-                     yHeight / yPartitions + endYaxis,
-                     xWidth / 7,
-                     yHeight / yPartitions * 5);
+            ctx.rect((xWidth * 6 - xWidth * xRange) / (6 * xRange + 6) + zeroXaxis,
+                     yHeight / yPartitions * (yPartitions - yRange) + endYaxis,
+                     xWidth / 6,
+                     zeroYaxis - (yHeight / yPartitions * (yPartitions - yRange) + endYaxis) - 1);
             ctx.fillStyle = "blue";
             ctx.fill();
             ctx.stroke();
