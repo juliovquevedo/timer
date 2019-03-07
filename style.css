@@ -76,7 +76,7 @@ body {
     100% {opacity: 0;}
 }
 
-#chartContainer {
+.chartContainer {
     float: left;
     width: 33.33%;
     height: 50vh;

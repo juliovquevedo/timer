@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <title>Timer</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--        <link type="text/css" rel="stylesheet" href="chart.css">-->
         <link type="text/css" rel="stylesheet" href="style.css">
     </head>
     <body>
@@ -12,7 +13,10 @@
                 0:00:00<br>
                 <span class="spacebar" id="spacebar">press spacebar to start/stop timer</span>
             </div>
-            <div id="chartContainer"></div>
+<!--            <div id="chart"></div>-->
+            <div id="chartholder" class="chartContainer">
+            <canvas width="400" height="400" id="chart"></canvas> 
+            </div>
         </div>
         <div>
             <div class="title-left">
@@ -41,6 +45,7 @@
         </div>
         
         <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+        <script src="mychart.js"></script>
         <script src="app.js"></script>
     </body>
 </html>

@@ -24,7 +24,6 @@ ys.length = 180;
 ys.fill(0, 0, 179);
   
 function StartTimer (e) {
-//    console.log(e);
     if (e.keyCode != 32){
         return 0;
     }
@@ -92,22 +91,48 @@ function StartTimer (e) {
             
             document.onkeypress = function (e) {
                 e.preventDefault();
-                var chart = new CanvasJS.Chart("chartContainer", {
-                    title:{
-                        text: "Times in seconds", 
-                        fontWeight: "bolder",
-                        fontColor: "#008B8B",
-                        fontFamily: "tahoma",        
-                        fontSize: 25,
-                        padding: 10        
-                    },
-                    data:[{        
-                        type: "column",
-                        dataPoints: charData
-                         }]
-                    });
-
-                chart.render();
+                setChartDimensions(charData);
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+//                var chart = new CanvasJS.Chart("chartContainer", {
+//                    title:{
+//                        text: "Times in seconds", 
+//                        fontWeight: "bolder",
+//                        fontColor: "#008B8B",
+//                        fontFamily: "tahoma",        
+//                        fontSize: 25,
+//                        padding: 10        
+//                    },
+//                    data:[{        
+//                        type: "column",
+//                        dataPoints: charData
+//                         }]
+//                    });
+//
+//                chart.render();
             }   
             
             
@@ -218,6 +243,7 @@ function updateChartData (counter) {
         tcharData[l] = {x: l, y:ys[l]};
         charData[m] = tcharData[l];
     }
+    
 }
 
 function counterToOutput (number) {

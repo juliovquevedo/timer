@@ -1,7 +1,7 @@
-window.addEventListener('resize', setChartDimensions);
-document.getElementById("chart").addEventListener('load', setChartDimensions());
+window.addEventListener('resize', setChartDimensions(charData));
+document.getElementById("chart").addEventListener('load', setChartDimensions(charData));
 
-function setChartDimensions () {
+function setChartDimensions (charData) {
     var chartHeight = window.getComputedStyle(document.getElementById("chartholder")).height;
     var chartWidth = window.getComputedStyle(document.getElementById("chartholder")).width;
     chartHeight = chartHeight.slice(0, -2);
@@ -9,10 +9,13 @@ function setChartDimensions () {
     document.getElementsByTagName("canvas")[0].setAttribute("height", chartHeight);
     document.getElementsByTagName("canvas")[0].setAttribute("width", chartWidth);
     
-    drawChart(chartWidth, chartHeight);
+    if(charData != undefined){
+       drawChart(chartWidth, chartHeight, charData); 
+    }    
+    
 }
 
-function drawChart (chartWidth, chartHeight) {
+function drawChart (chartWidth, chartHeight, charData) {
     var startXaxis = chartWidth * .06;
     var zeroXaxis = chartWidth * .07;
     var endXaxis = chartWidth * .98;
@@ -22,26 +25,26 @@ function drawChart (chartWidth, chartHeight) {
     
     var c = document.getElementById("chart");
     var ctx = c.getContext("2d");
-    charData2 = [{x:0, y:19},
-                 {x:1, y:23},
-                 {x:3, y:31},
-                 {x:4, y:44},
-                 {x:5, y:50},
-                 {x:6, y:25},
-                 {x:7, y:35},
-                 {x:8, y:25},
-                 {x:9, y:38},
-                 {x:10, y:27},
-                ];
+//    charData2 = [{x:0, y:19},
+//                 {x:1, y:23},
+//                 {x:3, y:31},
+//                 {x:4, y:44},
+//                 {x:5, y:50},
+//                 {x:6, y:25},
+//                 {x:7, y:35},
+//                 {x:8, y:25},
+//                 {x:9, y:38},
+//                 {x:10, y:27},
+//                ];
     
     
     
-    xRange = charData2.length;
-    yRange = getLargestValue(charData2, xRange);
+    xRange = charData.length;
+    yRange = getLargestValue(charData, xRange);
     yPartitions = calculateYpartitions(yRange);
     drawXaxis();
     drawYaxis();
-    drawBars(xRange, yRange, yPartitions, charData2);
+    drawBars(xRange, yRange, yPartitions, charData);
     
     
     
@@ -58,11 +61,11 @@ function drawChart (chartWidth, chartHeight) {
         ctx.stroke();
     }
     
-    function getLargestValue (charData2, xRange) {
+    function getLargestValue (charData, xRange) {
         largest = 0;
         for (m = 0; m < xRange; m++) {
-            if (charData2[m].y > largest) {
-                largest = charData2[m].y;
+            if (charData[m].y > largest) {
+                largest = charData[m].y;
             }
         }
         return largest;
@@ -99,31 +102,32 @@ function drawChart (chartWidth, chartHeight) {
         
     }
     
-    function drawBars (xRange, yRange, yPartitions, charData2) {
+    function drawBars (xRange, yRange, yPartitions, charData) {
         xWidth = endXaxis - zeroXaxis;
         yHeight = zeroYaxis - endYaxis;
         if(xRange < 6) {
             for (n = 1; n <= xRange; n++) {
                 ctx.beginPath();
-                ctx.strokeStyle = "blue";
+                ctx.strokeStyle = "#804515";
                 ctx.rect(((xWidth * 6 - xWidth * xRange) / (6 * xRange + 6)) * n + (xWidth / 6 * (n - 1)) + zeroXaxis,
-                         yHeight / yPartitions * (yPartitions - charData2[n - 1].y) + endYaxis,
+                         yHeight / yPartitions * (yPartitions - charData[n - 1].y) + endYaxis,
                          xWidth / 6,
-                         zeroYaxis - (yHeight / yPartitions * (yPartitions - charData2[n - 1].y) + endYaxis) - 1);
-                ctx.fillStyle = "blue";
+                         zeroYaxis - (yHeight / yPartitions * (yPartitions - charData[n - 1].y) + endYaxis) - 1);
+                ctx.fillStyle = "#804515";
                 ctx.fill();
                 ctx.stroke();
             }
         }
+//        xWidth / ((xRange + 1) * (xRange + 1))) + (2 * (n - 1)) + zeroXaxis
         else {
             for (n = 1; n <= xRange; n++) {
             ctx.beginPath();
-            ctx.strokeStyle = "blue";
+            ctx.strokeStyle = "#804515";
             ctx.rect((xWidth * (2 * n + (xRange * n) - (xRange) - 1)) / (xRange + 1) / (xRange + 1) + zeroXaxis,
-                     yHeight / yPartitions * (yPartitions - charData2[n - 1].y) + endYaxis,
+                     yHeight / yPartitions * (yPartitions - charData[n - 1].y) + endYaxis,
                      xWidth / (xRange + 1),
-                     zeroYaxis - (yHeight / yPartitions * (yPartitions - charData2[n - 1].y) + endYaxis) - 1);
-            ctx.fillStyle = "blue";
+                     zeroYaxis - (yHeight / yPartitions * (yPartitions - charData[n - 1].y) + endYaxis) - 1);
+            ctx.fillStyle = "#804515";
             ctx.fill();
             ctx.stroke();
             }
