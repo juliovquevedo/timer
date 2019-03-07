@@ -22,9 +22,15 @@ function drawChart (chartWidth, chartHeight) {
     
     var c = document.getElementById("chart");
     var ctx = c.getContext("2d");
-    charData2 = [{x:0, y:4},
-                 {x:1, y:3},
-                 {x:2, y:5},
+    charData2 = [{x:0, y:19},
+                 {x:1, y:23},
+                 {x:3, y:31},
+                 {x:4, y:44},
+                 {x:5, y:50},
+                 {x:6, y:25},
+                 {x:7, y:35},
+                 {x:8, y:25},
+                 {x:9, y:38},
                 ];
     
     
@@ -90,18 +96,32 @@ function drawChart (chartWidth, chartHeight) {
         
         return (firstDigit * Math.pow(10, parseInt(Math.log10(yRange)))) * ((firstDigit + 1) / firstDigit);
         
-    }//                     xWidth / 6 * 2.5 + zeroXaxis,
+    }
     
     function drawBars (xRange, yRange, yPartitions, charData2) {
         xWidth = endXaxis - zeroXaxis;
         yHeight = zeroYaxis - endYaxis;
-        if(xRange < 7) {
+        if(xRange < 6) {
+            for (n = 1; n <= xRange; n++) {
+                ctx.beginPath();
+                ctx.strokeStyle = "blue";
+                ctx.rect(((xWidth * 6 - xWidth * xRange) / (6 * xRange + 6)) * n + (xWidth / 6 * (n - 1)) + zeroXaxis,
+                         yHeight / yPartitions * (yPartitions - charData2[n - 1].y) + endYaxis,
+                         xWidth / 6,
+                         zeroYaxis - (yHeight / yPartitions * (yPartitions - charData2[n - 1].y) + endYaxis) - 1);
+                ctx.fillStyle = "blue";
+                ctx.fill();
+                ctx.stroke();
+            }
+        }
+//        xWidth / ((xRange + 1) * (xRange + 1))) + (2 * (n - 1)) + zeroXaxis
+        else {
             for (n = 1; n <= xRange; n++) {
             ctx.beginPath();
             ctx.strokeStyle = "blue";
-            ctx.rect((xWidth * 6 - xWidth * n) / (6 * n + 6) + zeroXaxis,
+            ctx.rect((xWidth * (2 * n + (xRange * n) - (xRange) - 1)) / (xRange + 1) / (xRange + 1) + zeroXaxis,
                      yHeight / yPartitions * (yPartitions - charData2[n - 1].y) + endYaxis,
-                     xWidth / 6,
+                     xWidth / (xRange + 1),
                      zeroYaxis - (yHeight / yPartitions * (yPartitions - charData2[n - 1].y) + endYaxis) - 1);
             ctx.fillStyle = "blue";
             ctx.fill();
