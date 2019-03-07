@@ -31,6 +31,7 @@ function drawChart (chartWidth, chartHeight) {
                  {x:7, y:35},
                  {x:8, y:25},
                  {x:9, y:38},
+                 {x:10, y:27},
                 ];
     
     
@@ -114,7 +115,6 @@ function drawChart (chartWidth, chartHeight) {
                 ctx.stroke();
             }
         }
-//        xWidth / ((xRange + 1) * (xRange + 1))) + (2 * (n - 1)) + zeroXaxis
         else {
             for (n = 1; n <= xRange; n++) {
             ctx.beginPath();
@@ -128,16 +128,5 @@ function drawChart (chartWidth, chartHeight) {
             ctx.stroke();
             }
         }
-//        if(xRange == 1) {
-//            ctx.beginPath();
-//            ctx.strokeStyle = "blue";
-//            ctx.rect((xWidth * 6 - xWidth * xRange) / (6 * xRange + 6) + zeroXaxis,
-//                     yHeight / yPartitions * (yPartitions - yRange) + endYaxis,
-//                     xWidth / 6,
-//                     zeroYaxis - (yHeight / yPartitions * (yPartitions - yRange) + endYaxis) - 1);
-//            ctx.fillStyle = "blue";
-//            ctx.fill();
-//            ctx.stroke();
-//        }
     }
 }
