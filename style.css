@@ -10,6 +10,7 @@ body {
     margin: 0;
     height: 100vh;
     width: 100vw;
+    color: #B5BED4;
 }
 
 .results, .stats, .top10, [class|="title"] {
@@ -33,7 +34,7 @@ body {
 }
 
 .results, .title-left {
-    background-color: #AA6C39;
+    background-color: #2e4272;
 }
 
 .results {
@@ -41,11 +42,11 @@ body {
 }
 
 .stats, .title-center {
-    background-color: #D49A6A;
+    background-color: #566B8F;
 }
 
 .top10, .title-right {
-    background-color: #AA6C39;
+    background-color: #2e4272;
 }
 
 #timer {
@@ -56,8 +57,8 @@ body {
     margin: 0;
     height: 50vh;
     padding: 15vh 0;
-    background-color: #804515;
-    color: white;
+    background-color: #0D1F47;
+    color: #CCD5E9;
 }
 
 .spacebar {
@@ -80,7 +81,7 @@ body {
     float: left;
     width: 33.33%;
     height: 50vh;
-    background-color: #D49A6A;
+    background-color: #62749C;
 }
 
 .blank {

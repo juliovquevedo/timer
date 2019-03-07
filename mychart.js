@@ -108,12 +108,12 @@ function drawChart (chartWidth, chartHeight, charData) {
         if(xRange < 6) {
             for (n = 1; n <= xRange; n++) {
                 ctx.beginPath();
-                ctx.strokeStyle = "#804515";
+                ctx.strokeStyle = "#010A1D";
                 ctx.rect(((xWidth * 6 - xWidth * xRange) / (6 * xRange + 6)) * n + (xWidth / 6 * (n - 1)) + zeroXaxis,
                          yHeight / yPartitions * (yPartitions - charData[n - 1].y) + endYaxis,
                          xWidth / 6,
                          zeroYaxis - (yHeight / yPartitions * (yPartitions - charData[n - 1].y) + endYaxis) - 1);
-                ctx.fillStyle = "#804515";
+                ctx.fillStyle = "#010A1D";
                 ctx.fill();
                 ctx.stroke();
             }
@@ -122,12 +122,12 @@ function drawChart (chartWidth, chartHeight, charData) {
         else {
             for (n = 1; n <= xRange; n++) {
             ctx.beginPath();
-            ctx.strokeStyle = "#804515";
+            ctx.strokeStyle = "#010A1D";
             ctx.rect((xWidth * (2 * n + (xRange * n) - (xRange) - 1)) / (xRange + 1) / (xRange + 1) + zeroXaxis,
                      yHeight / yPartitions * (yPartitions - charData[n - 1].y) + endYaxis,
                      xWidth / (xRange + 1),
                      zeroYaxis - (yHeight / yPartitions * (yPartitions - charData[n - 1].y) + endYaxis) - 1);
-            ctx.fillStyle = "#804515";
+            ctx.fillStyle = "#010A1D";
             ctx.fill();
             ctx.stroke();
             }
