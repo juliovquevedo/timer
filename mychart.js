@@ -16,6 +16,7 @@ function drawChart (chartWidth, chartHeight) {
     var startXaxis = chartWidth * .06;
     var zeroXaxis = chartWidth * .07;
     var endXaxis = chartWidth * .98;
+    console.log(endXaxis - zeroXaxis);
     var startYaxis = chartHeight * .95;
     var zeroYaxis = chartHeight * .94;
     var endYaxis = chartHeight * .13;
@@ -23,11 +24,7 @@ function drawChart (chartWidth, chartHeight) {
     var c = document.getElementById("chart");
     var ctx = c.getContext("2d");
     charData2 = [{x:0, y:1},
-                 {x:1, y:1},
-                 {x:2, y:1850},
-                 {x:3, y:1},
-                 {x:4, y:1},
-                 {x:5, y:1},
+                 
                 ];
     
     
@@ -35,9 +32,9 @@ function drawChart (chartWidth, chartHeight) {
     xRange = charData2.length;
     yRange = getLargestValue(charData2, xRange);
     yPartitions = calculateYpartitions(yRange);
-    console.log(yPartitions);
     drawXaxis();
     drawYaxis();
+    drawBars(xRange, yRange, yPartitions, charData2);
     
     
     
@@ -91,9 +88,23 @@ function drawChart (chartWidth, chartHeight) {
             }
         }
         
-        if(firstDigit != 1) {
-            return (firstDigit * Math.pow(10, parseInt(Math.log10(yRange)))) * ((firstDigit + 1) / firstDigit)
-        }
+        return (firstDigit * Math.pow(10, parseInt(Math.log10(yRange)))) * ((firstDigit + 1) / firstDigit)
         
+    }
+    
+    function drawBars (xRange, yRange, yPartitions, charData2) {
+        xWidth = endXaxis - zeroXaxis;
+        yHeight = zeroYaxis - endYaxis;
+        if(xRange == 1) {
+            ctx.beginPath();
+            ctx.strokeStyle = "blue";
+            ctx.rect(xWidth / 7 * 3 + zeroXaxis,
+                     yHeight / yPartitions + endYaxis,
+                     xWidth / 7,
+                     yHeight / yPartitions * 5);
+            ctx.fillStyle = "blue";
+            ctx.fill();
+            ctx.stroke();
+        }
     }
 }
