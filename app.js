@@ -1,12 +1,4 @@
-
-
-
 document.body.onkeyup = StartTimer;
-
-//document.body.addEventListener("keyup", StartTimer);
-//document.getElementById("timer").addEventListener("click", StartTimer);
-//document.getElementById("timer").addEventListener("click", StartTimer);
-//document.addEventListener("click", StartTimer);
 
 var counter = 0;
 var output = "";
@@ -42,8 +34,6 @@ function StartTimer (e) {
     }
     
     document.body.onkeypress = StopTimer;
-//    document.body.addEventListener("keypress", StopTimer);
-//    document.getElementById("timer").addEventListener("click", StopTimer);
     
     function StopTimer (e) {
 
@@ -82,59 +72,10 @@ function StartTimer (e) {
                 updateChartData(counter);
             }
 
-            
-            
-            
-            
-            
-           
-            
             document.onkeypress = function (e) {
                 e.preventDefault();
                 setChartDimensions(charData);
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-//                var chart = new CanvasJS.Chart("chartContainer", {
-//                    title:{
-//                        text: "Times in seconds", 
-//                        fontWeight: "bolder",
-//                        fontColor: "#008B8B",
-//                        fontFamily: "tahoma",        
-//                        fontSize: 25,
-//                        padding: 10        
-//                    },
-//                    data:[{        
-//                        type: "column",
-//                        dataPoints: charData
-//                         }]
-//                    });
-//
-//                chart.render();
-            }   
-            
+             }   
             
         }
         counter = 0;
@@ -360,6 +301,21 @@ function outputToCounter (output) {
     return ctr;
 }
     
-    
+//                var chart = new CanvasJS.Chart("chartContainer", {
+//                    title:{
+//                        text: "Times in seconds", 
+//                        fontWeight: "bolder",
+//                        fontColor: "#008B8B",
+//                        fontFamily: "tahoma",        
+//                        fontSize: 25,
+//                        padding: 10        
+//                    },
+//                    data:[{        
+//                        type: "column",
+//                        dataPoints: charData
+//                         }]
+//                    });
+//
+//                chart.render();  
     
     
