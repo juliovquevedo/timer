@@ -43,9 +43,6 @@ function drawChart (chartWidth, chartHeight, charData) {
     drawYaxis();
     drawBars(xRange, yRange, yPartitions, charData);
     
-    
-    
-    
     function drawXaxis () {
         ctx.moveTo(startXaxis, zeroYaxis);
         ctx.lineTo(endXaxis, zeroYaxis);
@@ -70,33 +67,59 @@ function drawChart (chartWidth, chartHeight, charData) {
     
     function calculateYpartitions (yRange) {
         if(yRange == 1) {
-            return 1.2;
+            yPartitions = 1.2;
+            calculateYlines(yRange, null, yPartitions);
+            return yPartitions;
         }
         firstDigit = parseInt(yRange.toString().slice(0,1));
         
-        if(yRange > 9 && firstDigit == 1) {
+        if(yRange > 9 && firstDigit == 1 && yRange != 1) {
             secondDigit = parseInt(yRange.toString().slice(1,2));
             switch(secondDigit) {
                 case 0:
                 case 1:
-                    return Math.pow(10, parseInt(Math.log10(yRange))) * 6 / 5;
+                    yPartitions = Math.pow(10, parseInt(Math.log10(yRange))) * 6 / 5;
+                    break;
                 case 2:
                 case 3:
-                    return Math.pow(10, parseInt(Math.log10(yRange)) - 1) * 14;
+                    yPartitions = Math.pow(10, parseInt(Math.log10(yRange)) - 1) * 14;
+                    break;
                 case 4:
                 case 5:
-                    return Math.pow(10, parseInt(Math.log10(yRange)) - 1) * 16;
+                    yPartitions = Math.pow(10, parseInt(Math.log10(yRange)) - 1) * 16;
+                    break;
                 case 6:
                 case 7:
-                    return Math.pow(10, parseInt(Math.log10(yRange)) - 1) * 18;
+                    yPartitions = Math.pow(10, parseInt(Math.log10(yRange)) - 1) * 18;
+                    break;
                 case 8:
                 case 9:
-                    return Math.pow(10, parseInt(Math.log10(yRange))) * 2;
+                    yPartitions = Math.pow(10, parseInt(Math.log10(yRange))) * 2;
             }
+            calculateYlines(firstDigit, secondDigit, yPartitions);
         }
-        
-        return (firstDigit * Math.pow(10, parseInt(Math.log10(yRange)))) * ((firstDigit + 1) / firstDigit);
-        
+        else {
+            yPartitions = (firstDigit * Math.pow(10, parseInt(Math.log10(yRange)))) * ((firstDigit + 1) / firstDigit);
+            calculateYlines(firstDigit, null, yPartitions);
+        }
+        return yPartitions;
+    }
+    
+    function calculateYlines (firstDigit, secondDigit, yPartitions) {
+        if(firstDigit != 1) {
+            (firstDigit * 2) < 10 ? ylines = firstDigit * 2 + 2 : ylines = firstDigit + 1;
+        }
+        else if (secondDigit == null) {
+            ylines = 6;
+        }
+        else {
+            ylines = parseInt(secondDigit / 2 + 6);
+        }
+        drawYlines(ylines, yPartitions);
+    }
+    
+    function drawYlines (ylines, yPartitions) {
+        return 0;
     }
     
     function drawBars (xRange, yRange, yPartitions, charData) {
