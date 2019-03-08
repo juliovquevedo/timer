@@ -153,12 +153,14 @@ function drawChart (chartWidth, chartHeight, charData) {
                     ctx.strokeStyle = "#2e4272";
                     ctx.fillStyle = "#2e4272";
                 }
+                if(charData[n - 1].y != 0){
                 ctx.rect(((xWidth * 6 - xWidth * xRange) / (6 * xRange + 6)) * n + (xWidth / 6 * (n - 1)) + zeroXaxis,
                          yHeight / yPartitions * (yPartitions - charData[n - 1].y) + endYaxis,
                          xWidth / 6,
                          zeroYaxis - (yHeight / yPartitions * (yPartitions - charData[n - 1].y) + endYaxis) - 1);
                 ctx.fill();
                 ctx.stroke();
+                }
                 ctx.moveTo((((xWidth * 6 - xWidth * xRange) / (6 * xRange + 6)) * n + (xWidth / 6 * (n - 1)) + zeroXaxis) + xWidth / 12, zeroYaxis);
                 ctx.lineTo((((xWidth * 6 - xWidth * xRange) / (6 * xRange + 6)) * n + (xWidth / 6 * (n - 1)) + zeroXaxis) + xWidth / 12, zeroYaxis + 5);
                 
