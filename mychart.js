@@ -159,6 +159,11 @@ function drawChart (chartWidth, chartHeight, charData) {
                          zeroYaxis - (yHeight / yPartitions * (yPartitions - charData[n - 1].y) + endYaxis) - 1);
                 ctx.fill();
                 ctx.stroke();
+                ctx.moveTo((((xWidth * 6 - xWidth * xRange) / (6 * xRange + 6)) * n + (xWidth / 6 * (n - 1)) + zeroXaxis) + xWidth / 12, zeroYaxis);
+                ctx.lineTo((((xWidth * 6 - xWidth * xRange) / (6 * xRange + 6)) * n + (xWidth / 6 * (n - 1)) + zeroXaxis) + xWidth / 12, zeroYaxis + 5);
+                
+                ctx.fillText((charData[n - 1].x) + "", (((xWidth * 6 - xWidth * xRange) / (6 * xRange + 6)) * n + (xWidth / 6 * (n - 1)) + zeroXaxis) + xWidth / 12 - 2, zeroYaxis + 15);
+                ctx.stroke();
             }
         }
         else {
