@@ -163,7 +163,6 @@ function drawChart (chartWidth, chartHeight, charData) {
                 }
                 ctx.moveTo((((xWidth * 6 - xWidth * xRange) / (6 * xRange + 6)) * n + (xWidth / 6 * (n - 1)) + zeroXaxis) + xWidth / 12, zeroYaxis);
                 ctx.lineTo((((xWidth * 6 - xWidth * xRange) / (6 * xRange + 6)) * n + (xWidth / 6 * (n - 1)) + zeroXaxis) + xWidth / 12, zeroYaxis + 5);
-                
                 ctx.fillText((charData[n - 1].x) + "", (((xWidth * 6 - xWidth * xRange) / (6 * xRange + 6)) * n + (xWidth / 6 * (n - 1)) + zeroXaxis) + xWidth / 12 - 2, zeroYaxis + 15);
                 ctx.stroke();
             }
@@ -183,15 +182,21 @@ function drawChart (chartWidth, chartHeight, charData) {
                     ctx.strokeStyle = "#2e4272";
                     ctx.fillStyle = "#2e4272";
                 }
+                if(charData[n - 1].y != 0) {
                 ctx.rect((xWidth * (2 * n + (xRange * n) - (xRange) - 1)) / (xRange + 1) / (xRange + 1) + zeroXaxis,
                          yHeight / yPartitions * (yPartitions - charData[n - 1].y) + endYaxis,
                          xWidth / (xRange + 1),
                          zeroYaxis - (yHeight / yPartitions * (yPartitions - charData[n - 1].y) + endYaxis) - 1);
                 ctx.fill();
                 ctx.stroke();
-                ctx.moveTo(((xWidth * (2 * n + (xRange * n) - (xRange) - 1)) / (xRange + 1) / (xRange + 1) + zeroXaxis) + (xWidth / ((xRange + 1) * 2)), zeroYaxis);
-                ctx.lineTo(((xWidth * (2 * n + (xRange * n) - (xRange) - 1)) / (xRange + 1) / (xRange + 1) + zeroXaxis) + (xWidth / ((xRange + 1) * 2)), zeroYaxis + 5);
-                ctx.stroke();
+                }
+
+                if(xRange < 10 || (xRange >= 10 && xRange < 20 && ((n - 1) % 2 == 0)) || (xRange >= 20 && xRange < 50 && ((n - 1) % 5 == 0)) || (xRange >= 50 && ((n - 1) % 10 == 0)) ){
+                    ctx.moveTo(((xWidth * (2 * n + (xRange * n) - (xRange) - 1)) / (xRange + 1) / (xRange + 1) + zeroXaxis) + (xWidth / ((xRange + 1) * 2)), zeroYaxis);
+                    ctx.lineTo(((xWidth * (2 * n + (xRange * n) - (xRange) - 1)) / (xRange + 1) / (xRange + 1) + zeroXaxis) + (xWidth / ((xRange + 1) * 2)), zeroYaxis + 5);
+                    ctx.fillText((charData[n - 1].x) + "", ((xWidth * (2 * n + (xRange * n) - (xRange) - 1)) / (xRange + 1) / (xRange + 1) + zeroXaxis) + (xWidth / ((xRange + 1) * 2)) - 3, zeroYaxis + 15);
+                    ctx.stroke();
+                   }
             }
         }
     }
