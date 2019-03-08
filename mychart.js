@@ -105,28 +105,47 @@ function drawChart (chartWidth, chartHeight, charData) {
         if(xRange < 6) {
             for (n = 1; n <= xRange; n++) {
                 ctx.beginPath();
-                ctx.strokeStyle = "#010A1D";
+                if(n % 3 == 0) {
+                    ctx.strokeStyle = "#010A1D";
+                    ctx.fillStyle = "#010A1D";
+                }
+                else if(n % 3 == 1) {
+                    ctx.strokeStyle = "#0D1F47";
+                    ctx.fillStyle = "#0D1F47";
+                }
+                else if(n % 3 == 2) {
+                    ctx.strokeStyle = "#2e4272";
+                    ctx.fillStyle = "#2e4272";
+                }
                 ctx.rect(((xWidth * 6 - xWidth * xRange) / (6 * xRange + 6)) * n + (xWidth / 6 * (n - 1)) + zeroXaxis,
                          yHeight / yPartitions * (yPartitions - charData[n - 1].y) + endYaxis,
                          xWidth / 6,
                          zeroYaxis - (yHeight / yPartitions * (yPartitions - charData[n - 1].y) + endYaxis) - 1);
-                ctx.fillStyle = "#010A1D";
                 ctx.fill();
                 ctx.stroke();
             }
         }
-//        xWidth / ((xRange + 1) * (xRange + 1))) + (2 * (n - 1)) + zeroXaxis
         else {
             for (n = 1; n <= xRange; n++) {
-            ctx.beginPath();
-            ctx.strokeStyle = "#010A1D";
-            ctx.rect((xWidth * (2 * n + (xRange * n) - (xRange) - 1)) / (xRange + 1) / (xRange + 1) + zeroXaxis,
-                     yHeight / yPartitions * (yPartitions - charData[n - 1].y) + endYaxis,
-                     xWidth / (xRange + 1),
-                     zeroYaxis - (yHeight / yPartitions * (yPartitions - charData[n - 1].y) + endYaxis) - 1);
-            ctx.fillStyle = "#010A1D";
-            ctx.fill();
-            ctx.stroke();
+                ctx.beginPath();
+                if(n % 3 == 0) {
+                    ctx.strokeStyle = "#010A1D";
+                    ctx.fillStyle = "#010A1D";
+                }
+                else if(n % 3 == 1) {
+                    ctx.strokeStyle = "#0D1F47";
+                    ctx.fillStyle = "#0D1F47";
+                }
+                else if(n % 3 == 2) {
+                    ctx.strokeStyle = "#2e4272";
+                    ctx.fillStyle = "#2e4272";
+                }
+                ctx.rect((xWidth * (2 * n + (xRange * n) - (xRange) - 1)) / (xRange + 1) / (xRange + 1) + zeroXaxis,
+                         yHeight / yPartitions * (yPartitions - charData[n - 1].y) + endYaxis,
+                         xWidth / (xRange + 1),
+                         zeroYaxis - (yHeight / yPartitions * (yPartitions - charData[n - 1].y) + endYaxis) - 1);
+                ctx.fill();
+                ctx.stroke();
             }
         }
     }
