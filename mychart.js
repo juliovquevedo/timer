@@ -119,7 +119,15 @@ function drawChart (chartWidth, chartHeight, charData) {
     }
     
     function drawYlines (ylines, yPartitions) {
-        return 0;
+        if(yPartitions) {
+            yHeight = zeroYaxis - endYaxis;
+            for (n = 0; n < ylines; n++) {
+                ctx.beginPath();
+                ctx.moveTo(startXaxis, yHeight / ylines * n + endYaxis);
+                ctx.lineTo(endXaxis, yHeight / ylines * n + endYaxis);
+                ctx.stroke();
+            }
+        }
     }
     
     function drawBars (xRange, yRange, yPartitions, charData) {
