@@ -187,6 +187,9 @@ function drawChart (chartWidth, chartHeight, charData) {
                          zeroYaxis - (yHeight / yPartitions * (yPartitions - charData[n - 1].y) + endYaxis) - 1);
                 ctx.fill();
                 ctx.stroke();
+                ctx.moveTo(((xWidth * (2 * n + (xRange * n) - (xRange) - 1)) / (xRange + 1) / (xRange + 1) + zeroXaxis) + (xWidth / ((xRange + 1) * 2)), zeroYaxis);
+                ctx.lineTo(((xWidth * (2 * n + (xRange * n) - (xRange) - 1)) / (xRange + 1) / (xRange + 1) + zeroXaxis) + (xWidth / ((xRange + 1) * 2)), zeroYaxis + 5);
+                ctx.stroke();
             }
         }
     }
