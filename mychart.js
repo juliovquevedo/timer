@@ -122,7 +122,12 @@ function drawChart (chartWidth, chartHeight, charData) {
         if(yPartitions) {
             yHeight = zeroYaxis - endYaxis;
             for (n = 0; n < ylines; n++) {
+                label = yPartitions / ylines * (ylines - n);
+                if(yPartitions == 1.2) {
+                    label = label.toFixed(1);
+                }
                 ctx.beginPath();
+                ctx.fillText(label + "", 5, yHeight / ylines * n + endYaxis + 4);
                 ctx.moveTo(startXaxis, yHeight / ylines * n + endYaxis);
                 ctx.lineTo(endXaxis, yHeight / ylines * n + endYaxis);
                 ctx.stroke();
