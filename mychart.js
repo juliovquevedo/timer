@@ -191,7 +191,7 @@ function drawChart (chartWidth, chartHeight, charData) {
                 ctx.stroke();
                 }
 
-                if(xRange < 10 || (xRange >= 10 && xRange < 20 && ((n - 1) % 2 == 0)) || (xRange >= 20 && xRange < 50 && ((n - 1) % 5 == 0)) || (xRange >= 50 && ((n - 1) % 10 == 0)) ){
+                if(xRange < 10 || (xRange >= 10 && xRange < 20 && ((n + (parseInt(best / 100) % 2)) % 2 == 1)) || (xRange >= 20 && xRange < 50 && ((n + (parseInt(best / 100) % 5)) % 5 == 1)) || (xRange >= 50 && ((n + (parseInt(best / 100) % 10)) % 10 == 1)) ){
                     ctx.moveTo(((xWidth * (2 * n + (xRange * n) - (xRange) - 1)) / (xRange + 1) / (xRange + 1) + zeroXaxis) + (xWidth / ((xRange + 1) * 2)), zeroYaxis);
                     ctx.lineTo(((xWidth * (2 * n + (xRange * n) - (xRange) - 1)) / (xRange + 1) / (xRange + 1) + zeroXaxis) + (xWidth / ((xRange + 1) * 2)), zeroYaxis + 5);
                     ctx.fillText((charData[n - 1].x) + "", ((xWidth * (2 * n + (xRange * n) - (xRange) - 1)) / (xRange + 1) / (xRange + 1) + zeroXaxis) + (xWidth / ((xRange + 1) * 2)) - 3, zeroYaxis + 15);
