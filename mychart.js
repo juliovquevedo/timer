@@ -16,7 +16,7 @@ function drawChart (chartWidth, chartHeight, charData) {
     var startXaxis = chartWidth * .06;
     var zeroXaxis = chartWidth * .07;
     var endXaxis = chartWidth * .98;
-    var startYaxis = chartHeight * .95;
+    var startYaxis = chartHeight * .94;
     var zeroYaxis = chartHeight * .94;
     var endYaxis = chartHeight * .13;
     
